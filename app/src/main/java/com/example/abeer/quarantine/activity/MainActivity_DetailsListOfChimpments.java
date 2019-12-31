@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,7 +21,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,73 +29,56 @@ import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.example.abeer.quarantine.R;
 import com.example.abeer.quarantine.adapter.AdapterItemData;
+import com.example.abeer.quarantine.adapter.AdapterLivingObjects;
 import com.example.abeer.quarantine.adapter.AdapterPlantProduct;
-import com.example.abeer.quarantine.databinding.ActivityDetailsListOfChimpmentsNewBinding;
+import com.example.abeer.quarantine.adapter.AdapterUnlivingObjects;
 import com.example.abeer.quarantine.databinding.ActivityMainDetailsListOfChimpmentsBinding;
 import com.example.abeer.quarantine.functions.Public_function;
-import com.example.abeer.quarantine.model.ExportCheckRequestDetail;
 import com.example.abeer.quarantine.presenter.ClickCustomItemData;
-import com.example.abeer.quarantine.presenter.ClickCustomItemData_plantproduct;
 import com.example.abeer.quarantine.remote.ApiCall;
+import com.example.abeer.quarantine.remote.PlantQurDBHelper;
 import com.example.abeer.quarantine.remote.data.DataManger;
 import com.example.abeer.quarantine.remote.data.IDataValue;
-import com.example.abeer.quarantine.viewmodel.ItemData;
-import com.example.abeer.quarantine.viewmodel.ListDetailsCheckRequest;
+import com.example.abeer.quarantine.viewmodel.DataForCardItems;
+import com.example.abeer.quarantine.viewmodel.Emp_Committe;
 import com.example.abeer.quarantine.viewmodel.ListDetailsCheckRequestNew;
-import com.example.abeer.quarantine.viewmodel.ListItemDataDetail;
-import com.example.abeer.quarantine.viewmodel.plantProduct.ItemData_PlantProduct;
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
 
 public class MainActivity_DetailsListOfChimpments extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     boolean clicked;
     WebView webView;
-    LinearLayout ChimpmentDetails, plant, part_Plantproduct, unLiving_Objects, Living_Objects, general_admin, outlet, linear_title5, company, person, admin;
+    LinearLayout plant, part_Plantproduct, unLiving_Objects, Living_Objects, general_admin, outlet, company, person, admin;
     DataManger dataManger;
     Context context = this;
-   // ActivityDetailsListOfChimpmentsNewBinding activityDetailsListOfChimpmentsNewBinding;
-    final List<ExportCheckRequestDetail>[] exportCheckRequestDetails = new List[1];
-    final ListDetailsCheckRequest[] listDetailsCheckRequest = new ListDetailsCheckRequest[1];
-    final ListDetailsCheckRequest[] listDetailsCheckRequest2 = new ListDetailsCheckRequest[1];
-    final ListDetailsCheckRequestNew[] listDetailsCheckRequestNews = new ListDetailsCheckRequestNew[1];
-    final ListDetailsCheckRequestNew[] listDetailsCheckRequestNews2 = new ListDetailsCheckRequestNew[1];
-    ListDetailsCheckRequestNew[] daa;
-    final ListItemDataDetail[] listItemDataDetails = new ListItemDataDetail[1];
-    final List<ItemData> []itemDataa = new List[1];
-    final ItemData[]ii=new ItemData[1];
-    final ArrayList<ItemData> ItemDatatest = new ArrayList<>();
-    final ArrayList<ItemData>ItemDatatest2 = new ArrayList<>();
-    final ListItemDataDetail[] itemData = new ListItemDataDetail[1];
-    AdapterItemData adapterCheckRequest=null;
+    ListDetailsCheckRequestNew daa;
     String ipadrass;
     String num_Request;
     String Request_id;
     DrawerLayout drawer;
     JSONObject jsonObj;
     Gson gson;
+    long EmpId;
     SharedPreferences sharedPreferences;
     Public_function public_function;
-
+    LocationManager manager;
+    PlantQurDBHelper plantQurDBHelper;
+    Emp_Committe emp_committe;
+    int Committee_Type_Id;
     ActivityMainDetailsListOfChimpmentsBinding activityMainDetailsListOfChimpmentsBinding;
-//LinearLayout data_manafz,Exporting_Organization,Exporting_Company,Exporting_Pass,
-         //   ChimpmentDetails,Examination_Place,attachments ,plant,part_Plantproduct,unLiving_Objects,Living_Objects,linear_title5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        activityMainDetailsListOfChimpmentsBinding =
-//                DataBindingUtil.setContentView((Activity) context,R.layout.activity_main__details_list_of_chimpments);
-
-      //    setContentView(R.layout.activity_main__details_list_of_chimpments);
         activityMainDetailsListOfChimpmentsBinding = DataBindingUtil.setContentView((Activity) context, R.layout.activity_main__details_list_of_chimpments);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -104,41 +88,17 @@ public class MainActivity_DetailsListOfChimpments extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
-        sharedPreferences = getApplicationContext().getSharedPreferences("SharedPreference",0);
-        num_Request = sharedPreferences.getString("num_Request","");
-        Request_id = sharedPreferences.getString("checkRequest_Id","");
-        ipadrass= sharedPreferences.getString("ipadrass","");
-        public_function=new Public_function();
-
-//        context=this;
-//        webView=findViewById(R.id.pdf);
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        data_manafz=findViewById(R.id.data_manafz);
-//        Exporting_Organization=findViewById(R.id.Exporting_Organization);
-//        Exporting_Company=findViewById(R.id.Exporting_Company);
-//        Exporting_Pass=findViewById(R.id.Exporting_Pass);
-//        ChimpmentDetails=findViewById(R.id.ChimpmentDetails);
-//        linear_title5=findViewById(R.id.linear_title5);
-//        Examination_Place=findViewById(R.id.Examination_Place);
-//        plant=findViewById(R.id.plant);
-//        part_Plantproduct=findViewById(R.id.part_Plantproduct);
-//        unLiving_Objects=findViewById(R.id.unLiving_Objects);
-//        Living_Objects=findViewById(R.id.Living_Objects);
-//        attachments=findViewById(R.id.attachments);
-
-        //   num_Request = getIntent().getStringExtra("num_Request");
-        TextView title_list=findViewById(R.id.title_list);
-        //   title_list.setText(ss);
-
-    //    num_Request=getIntent().getStringExtra("num_Request");
-    //    Toast.makeText(context, num_Request, Toast.LENGTH_SHORT).show();
+        sharedPreferences = getApplicationContext().getSharedPreferences("SharedPreference", 0);
+        num_Request = sharedPreferences.getString("num_Request", "");
+        Request_id = sharedPreferences.getString("checkRequest_Id", "");
+        ipadrass = sharedPreferences.getString("ipadrass", "");
+        EmpId = sharedPreferences.getLong("EmpId", 0);
+        Committee_Type_Id=sharedPreferences.getInt("Committee_Type_Id",0);
+        public_function = new Public_function();
         dataManger = new DataManger(this);
-
-        //setContentView(R.layout.activity_details_list_of_chimpments_new);
         plant = findViewById(R.id.plant);
         part_Plantproduct = findViewById(R.id.part_Plantproduct);
         unLiving_Objects = findViewById(R.id.unLiving_Objects);
@@ -148,232 +108,254 @@ public class MainActivity_DetailsListOfChimpments extends AppCompatActivity
         company = findViewById(R.id.company);
         admin = findViewById(R.id.admin);
         person = findViewById(R.id.person);
-        //test
-      //  dataManger.SendVollyRequestJsonArrayGet(this, Request.Method.GET, ApiCall.UrlDetailsCheckRequest+"40034", new IDataValue() {
-     //running
-       dataManger.SendVollyRequestJsonArrayGet(this, Request.Method.GET, ipadrass+ApiCall.UrlDetailsCheckRequest+Request_id, new IDataValue() {
-            @Override
-            public void Success(Object response) throws JSONException {
-                String result=response.toString();
-                gson=new Gson();
-                daa= gson.fromJson(result, ListDetailsCheckRequestNew[].class);
-                activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.setDetaill(daa[0]);
-                gson = new Gson();
-                String item_data = daa[0].getItem_Data();
-                jsonObj = null;
-                jsonObj = XML.toJSONObject(item_data);
-            }
+        ((TextView) findViewById(R.id.value_request)).setText(num_Request);
+    }
 
-            @Override
-            public void Error(VolleyError error) {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location = public_function.getlocation(context, manager);
+        if (location.getLatitude() != 0 && location.getLongitude() != 0) {
+            SharedPreferences sharedPreferences;
+            SharedPreferences.Editor prefsEditor;
+            sharedPreferences = getApplicationContext().getSharedPreferences("SharedPreference", 0);
+            prefsEditor = sharedPreferences.edit();
+            prefsEditor.putLong("Latitude", (long) location.getLatitude());
+            prefsEditor.putLong("Longitude", (long) location.getLongitude());
+            Toast.makeText(this, "" + location.getLatitude() + location.getLongitude(), Toast.LENGTH_LONG).show();
+        }
+        plantQurDBHelper = new PlantQurDBHelper(context);
+        boolean ISadmin = plantQurDBHelper.getISAdmin(EmpId,  Long.parseLong(Request_id));
+        emp_committe=new Emp_Committe(ISadmin);
+        String Details_json = plantQurDBHelper.Get_Data_for_RequestCommittee_working("Details_json", Long.valueOf(Request_id));
 
+        if (Details_json != null) {
+            gson = new Gson();
+            daa = gson.fromJson(Details_json, ListDetailsCheckRequestNew.class);
+            activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.setDetaill(daa);
+            HashMap<Integer, Boolean> types = new HashMap<>();
+            types = plantQurDBHelper.SelectTypeItemsforRequest_ItemData(Long.valueOf(Request_id));
+            Types(types);
+        } else {
+            ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            if (mWifi.isConnected()) {
+                dataManger.SendVollyRequestJsonObjectGet(this, Request.Method.GET, ipadrass + ApiCall.UrlDetailsCheckRequest + Request_id+"&Committee_Type_Id="+Committee_Type_Id, new IDataValue() {
+                    @Override
+                    public void Success(Object response) throws JSONException {
+                        String result = response.toString();
+                        gson = new Gson();
+                        daa = gson.fromJson(result, ListDetailsCheckRequestNew.class);
+                        activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.setDetaill(daa);
+                        ListDetailsCheckRequestNew sqlite = new ListDetailsCheckRequestNew(true, daa);
+                        JSONObject json = new JSONObject(new Gson().toJson(sqlite, ListDetailsCheckRequestNew.class));
+                        plantQurDBHelper.Update_OneColumeAnyTable("Details_json", "RequestCommittee", json.toString(), "_id", Request_id);
+                        gson = new Gson();
+                        String item_data = daa.getItem_Data();
+                        if (item_data != null) {
+                            jsonObj = new JSONObject();
+                            jsonObj = XML.toJSONObject(item_data);
+                            HashMap<Integer, Boolean> types = new HashMap<>();
+                            types = plantQurDBHelper.InsertItemsforRequest_ItemData(Long.valueOf(Request_id), jsonObj);
+                            Types(types);
+                        }
+                    }
+
+                    @Override
+                    public void Error(VolleyError error) {
+
+                    }
+                });
+
+            }else {
+                public_function.AlertDialog("برجاء الاتصال بالشبكه", context, false);
             }
-        });
+        }
+
+    }
+
+    public void Types(HashMap<Integer, Boolean> types) {
+        if (!types.get(4).booleanValue()) {
+            findViewById(R.id.stitle1).setVisibility(View.GONE);
+        }
+        if (!types.get(5).booleanValue()) {
+            findViewById(R.id.stitle2).setVisibility(View.GONE);
+        }
+        if (!types.get(16).booleanValue()) {
+            findViewById(R.id.stitle3).setVisibility(View.GONE);
+        }
+        if (!types.get(33).booleanValue()) {
+            findViewById(R.id.stitle4).setVisibility(View.GONE);
+        }
     }
 
     public void stitleclick(View view) throws JSONException {
-
-
         clicked = ((TextView) view).isClickable();
-
         switch (view.getId()) {
-
             case R.id.stitle1:
                 if (clicked) {
                     plant.setVisibility(View.VISIBLE);
-//                dataManger.SendVollyRequestJsonArrayGet(this, Request.Method.GET, ipadrass+ApiCall.UrlDetailsCheckRequest, new IDataValue() {
-//                    @Override
-//                    public void Success(Object response) throws JSONException {
-//                        try {
-//                            Gson gson = new Gson();
-//                            String data = response.toString();
-//                            ListDetailsCheckRequestNew[] result = gson.fromJson(data, ListDetailsCheckRequestNew[].class);
-//                            final String item_data = result[0].getItem_Data();
-//                            JSONObject jsonObj = null;
-//                            jsonObj = XML.toJSONObject(item_data);
-//                            itemData[0] = gson.fromJson(jsonObj.toString(), ListItemDataDetail.class);
-//                            ItemDatatest.addAll(itemData[0].get_ItemData_test());
-//                            itemDataa[0]=ItemDatatest;
-
-                    //     try {
-
-                    Object f = jsonObj.get("_x0040_Item_Data");
-
-                    if (f instanceof JSONArray) {
-                        itemData[0] = gson.fromJson(jsonObj.toString(), ListItemDataDetail.class);
-                        ItemDatatest.addAll(itemData[0].get_ItemData_test());
-                        //////////////////////////////////////////////////////////////////////////////////////////////////
-                        for (int i = 0; i < ItemDatatest.size(); i++) {
-                            String df = ItemDatatest.get(i).Item_Type;
-                            // arrayList.add( ItemDatatest.get(i).Item_Type);
-                            if (Float.parseFloat(ItemDatatest.get(i).Item_Type) == Float.parseFloat("4")) {
-                                ItemDatatest2.add((ItemDatatest.get(i)));
-                                itemDataa[0] = ItemDatatest2;
-                                Toast.makeText(context, "item", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-//                    itemData[0] = gson.fromJson(jsonObj.toString(), ListItemDataDetail.class);
-//                    ItemDatatest.addAll(itemData[0].get_ItemData_test());
-//                    itemDataa[0]=ItemDatatest;
-                        if (adapterCheckRequest == null) {
-                            adapterCheckRequest = new AdapterItemData(itemDataa[0], context, new ClickCustomItemData() {
-                                @Override
-                                public void plant_click(View view, ItemData itemData) {
-//                                            String name_plant = itemData.getItem_Name();
-//                                            String ShortName = itemData.getItem_ShortName();
-//                                            String ItemPurpose = itemData.getItemPurpose();
-//                                            String ItemPartTypeName = itemData.getItemPartTypeName();
-//                                            String Item_Cat_Name = itemData.getItem_Cat_Name();
-                                    //  Gson h=new Gson();
-                                    // String u=h.toJson("{"+"'_x0040_Item_Data'"+":[{"+"'Item_Name':"+name_plant+","+"'ShortName':"+ShortName+","+"'ItemPurpose':"+ItemPurpose+","+"'ItemPartTypeName':"+ItemPartTypeName+","+"'Item_Cat_Name':"+Item_Cat_Name+"}"+"]"+"}");
-                                    Intent i = new Intent(MainActivity_DetailsListOfChimpments.this, MainActivity_subdetails.class);
-                                    gson = new Gson();
-                                    String data_detail = gson.toJson(itemData);
-                                    i.putExtra("jsonObj",jsonObj.toString());
-                                    i.putExtra("itemData", data_detail);
-                                    //    i.putExtra("ipadrass", ipadrass);
-                                    // i.putExtra("num_Request",num_Request);
-
-                                    //  i.putExtra("plant_name","{"+"'_x0040_Item_Data'"+":[{"+"Item_Name:"+name_plant+","+"ShortName:"+ShortName+","+"ItemPurpose:"+ItemPurpose+","+"ItemPartTypeName:"+ItemPartTypeName+","+"Item_Cat_Name:"+Item_Cat_Name+"]"+"}"+"}");
-                                    //      final ItemData[] t = new ItemData[1];
-                                    //      Gson gson1=new Gson();
-                                    //     String data=   gson1.toJson(itemData);
-                                    //    Gson gson4=new Gson();
-                                    //   t[0] = gson4.fromJson(data.toString(), ItemData.class);
-                                    //    i.putExtra("plant_name" ,t[0]);
-                                    startActivity(i);
-                                }
-                            });
-                            activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.setAdapter(adapterCheckRequest);
-                            activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.recycler.setLayoutManager(new LinearLayoutManager(context));
-                        } else {
-
+                    findViewById(R.id.recycler1).setVisibility(View.VISIBLE);
+                    List<DataForCardItems> dataForCardItemsList = new ArrayList<>();
+                    dataForCardItemsList = plantQurDBHelper.GetDataForItems(Long.valueOf(Request_id), 4);
+                    AdapterItemData adapterCheckRequest = new AdapterItemData(dataForCardItemsList,emp_committe, context, new ClickCustomItemData() {
+                        @Override
+                        public void plant_click(View view, DataForCardItems itemData) {
+                            SharedPreferences sharedPreferences;
+                            SharedPreferences.Editor prefsEditor;
+                            sharedPreferences = getApplicationContext().getSharedPreferences("SharedPreference", 0);
+                            prefsEditor = sharedPreferences.edit();
+                            prefsEditor.putLong("Item_id", itemData.getRequest_Item_ID());
+                            prefsEditor.apply();
+                            Intent i = new Intent(MainActivity_DetailsListOfChimpments.this, MainActivity_subdetails.class);
+//                            i.putExtra("_id", itemData.getRequest_Item_ID());
+                            i.putExtra("typenum", 4);
+                            startActivity(i);
                         }
 
-                        //   }
-//                            catch (Exception ex){
-//                                Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
-//                            }
+                        @Override
+                        public void comfirm_click(View view, DataForCardItems itemData) {
+                            plantQurDBHelper = new PlantQurDBHelper(context);
+                            ////not need now ////////////
+                            int Has_Result = plantQurDBHelper.Get_Data_For_Items_RetutnInt("Has_Result", itemData.Request_Item_ID);
+                            ///////////////////////////
+                            Intent i = new Intent(MainActivity_DetailsListOfChimpments.this, MainActivity_Confirm.class);
+                            startActivity(i);
 
+                        }
+                    });
+                    activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.setAdapter(adapterCheckRequest);
+                    activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.recycler1.setLayoutManager(new LinearLayoutManager(context));
 
-                        //  }
-//                        catch (Exception ex){
-//                            Toast.makeText(context, ex.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-
-                        // }
-
-//                    @Override
-//                    public void Error(VolleyError error) {
-//
-//                 }
-//                });
-                        part_Plantproduct.setVisibility(View.GONE);
-                        unLiving_Objects.setVisibility(View.GONE);
-                        Living_Objects.setVisibility(View.GONE);
-                        findViewById(R.id.stitle1).setBackgroundResource(R.drawable.btnshadowclicked);
-                        findViewById(R.id.stitle1).setEnabled(false);
-                        findViewById(R.id.stitle2).setBackgroundResource(R.drawable.btnshadow);
-                        findViewById(R.id.stitle2).setEnabled(true);
-                        findViewById(R.id.stitle3).setBackgroundResource(R.drawable.btnshadow);
-                        findViewById(R.id.stitle3).setEnabled(true);
-                        findViewById(R.id.stitle4).setBackgroundResource(R.drawable.btnshadow);
-                        findViewById(R.id.stitle4).setEnabled(true);
-                    }
+                    part_Plantproduct.setVisibility(View.GONE);
+                    unLiving_Objects.setVisibility(View.GONE);
+                    Living_Objects.setVisibility(View.GONE);
+                    findViewById(R.id.stitle1).setBackgroundResource(R.drawable.btnshadowclicked);
+                    findViewById(R.id.stitle1).setEnabled(false);
+                    findViewById(R.id.stitle2).setBackgroundResource(R.drawable.btnshadow);
+                    findViewById(R.id.stitle2).setEnabled(true);
+                    findViewById(R.id.stitle3).setBackgroundResource(R.drawable.btnshadow);
+                    findViewById(R.id.stitle3).setEnabled(true);
+                    findViewById(R.id.stitle4).setBackgroundResource(R.drawable.btnshadow);
+                    findViewById(R.id.stitle4).setEnabled(true);
                 }
                 break;
             case R.id.stitle2:
-                if (clicked)
-                plant.setVisibility(View.GONE);
-                part_Plantproduct.setVisibility(View.VISIBLE);
-//                dataManger.SendVollyRequestJsonArrayGet(this, Request.Method.GET, ApiCall.UrlDetailsCheckRequest, new IDataValue() {
-//                    @Override
-//                    public void Success(Object response) throws JSONException {
-//                        try {
-//                            Gson gson = new Gson();
-//                            String data = response.toString();
-//                            ListDetailsCheckRequestNew[] result = gson.fromJson(data, ListDetailsCheckRequestNew[].class);
-//                            final String item_data = result[0].getItem_Data();
-//                            JSONObject jsonObj = null;
-//                            jsonObj = XML.toJSONObject(item_data);
-//                            Object f = jsonObj.get("_x0040_Item_Data");
-//
-//                            if (f instanceof JSONArray) {
-//                                itemData_plant[0] = gson.fromJson(jsonObj.toString(), ListPlantproduct.class);
-//                                ItemDatatest_plant.addAll(itemData_plant[0].get_ItemData_test());
-//                                //////////////////////////////////////////////////////////////////////////////////////////////////
-//                                for (int i = 0; i < ItemDatatest_plant.size(); i++) {
-//                                    String df = ItemDatatest_plant.get(i).Item_Type;
-//                                    // arrayList.add( ItemDatatest.get(i).Item_Type);
-//                                    if (Float.parseFloat(ItemDatatest_plant.get(i).Item_Type) == Float.parseFloat("5")) {
-//                                        ItemDatatest2_plant.add((ItemDatatest_plant.get(i)));
-//                                        itemDataa_plant[0] = ItemDatatest2_plant;
-//                                        Toast.makeText(context, "item", Toast.LENGTH_SHORT).show();
-//                                    }
-//                                }
-//                                AdapterPlantProduct adapterPlantProduct = new AdapterPlantProduct(itemDataa_plant[0], context, new ClickCustomItemData_plantproduct() {
-//                                    @Override
-//                                    public void plantProduct_click(View view, ItemData_PlantProduct itemData_plantProduct) {
-//                                        Intent i = new Intent(MainActivity_DetailsListOfChimpments.this, MainActivity_subdetails.class);
-//                                        Gson gson1=new Gson();
-//                                        String detail_plant= gson1.toJson(itemData_plantProduct);
-//                                        i.putExtra("plant_namee" ,detail_plant);
-//                                        startActivity(i);
-//
-//                                    }
-//                                });
-//
-//                                activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.setAdapterplant(adapterPlantProduct);
-//                                activityDetailsListOfChimpmentsNewBinding.recycler2.setLayoutManager(new LinearLayoutManager(context));
-                        //    }
-                      //  }
-//                        catch (Exception ex){
-//                            Toast.makeText(context, ex.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void Error(VolleyError error) {
-//
-//                    }
-//                });
+                if (clicked) {
+                    plant.setVisibility(View.GONE);
+                    part_Plantproduct.setVisibility(View.VISIBLE);
+                    findViewById(R.id.recycler2).setVisibility(View.VISIBLE);
+                    List<DataForCardItems> dataForCardItemsList = new ArrayList<>();
+                    dataForCardItemsList = plantQurDBHelper.GetDataForItems(Long.valueOf(Request_id), 5);
+                    AdapterPlantProduct adapterCheckRequest = new AdapterPlantProduct(dataForCardItemsList,emp_committe, context, new ClickCustomItemData() {
+                        @Override
+                        public void plant_click(View view, DataForCardItems itemData) {
+                            SharedPreferences sharedPreferences;
+                            SharedPreferences.Editor prefsEditor;
+                            sharedPreferences = getApplicationContext().getSharedPreferences("SharedPreference", 0);
+                            prefsEditor = sharedPreferences.edit();
+                            prefsEditor.putLong("Item_id", itemData.getRequest_Item_ID());
+                            prefsEditor.apply();
+                            Intent i = new Intent(MainActivity_DetailsListOfChimpments.this, MainActivity_subdetails.class);
+//                            i.putExtra("_id", itemData.getRequest_Item_ID());
+                            i.putExtra("typenum", 5);
+                            startActivity(i);
+                        }
 
-                unLiving_Objects.setVisibility(View.GONE);
-                Living_Objects.setVisibility(View.GONE);
-                findViewById(R.id.stitle2).setBackgroundResource(R.drawable.btnshadowclicked);
-                findViewById(R.id.stitle2).setEnabled(false);
-                findViewById(R.id.stitle1).setBackgroundResource(R.drawable.btnshadow);
-                findViewById(R.id.stitle1).setEnabled(true);
-                findViewById(R.id.stitle3).setBackgroundResource(R.drawable.btnshadow);
-                findViewById(R.id.stitle3).setEnabled(true);
-                findViewById(R.id.stitle4).setBackgroundResource(R.drawable.btnshadow);
-                findViewById(R.id.stitle4).setEnabled(true);
+                        @Override
+                        public void comfirm_click(View view, DataForCardItems itemData) {
 
+                        }
+                    });
+                    activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.setAdapterplant(adapterCheckRequest);
+                    activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.recycler2.setLayoutManager(new LinearLayoutManager(context));
+                    unLiving_Objects.setVisibility(View.GONE);
+                    Living_Objects.setVisibility(View.GONE);
+                    findViewById(R.id.stitle2).setBackgroundResource(R.drawable.btnshadowclicked);
+                    findViewById(R.id.stitle2).setEnabled(false);
+                    findViewById(R.id.stitle1).setBackgroundResource(R.drawable.btnshadow);
+                    findViewById(R.id.stitle1).setEnabled(true);
+                    findViewById(R.id.stitle3).setBackgroundResource(R.drawable.btnshadow);
+                    findViewById(R.id.stitle3).setEnabled(true);
+                    findViewById(R.id.stitle4).setBackgroundResource(R.drawable.btnshadow);
+                    findViewById(R.id.stitle4).setEnabled(true);
+
+                }
                 break;
             case R.id.stitle3:
-                if (clicked)
-
+                if (clicked) {
                     plant.setVisibility(View.GONE);
-                part_Plantproduct.setVisibility(View.GONE);
-                unLiving_Objects.setVisibility(View.VISIBLE);
-                Living_Objects.setVisibility(View.GONE);
-                findViewById(R.id.stitle3).setBackgroundResource(R.drawable.btnshadowclicked);
-                findViewById(R.id.stitle3).setEnabled(false);
-                findViewById(R.id.stitle2).setBackgroundResource(R.drawable.btnshadow);
-                findViewById(R.id.stitle2).setEnabled(true);
-                findViewById(R.id.stitle1).setBackgroundResource(R.drawable.btnshadow);
-                findViewById(R.id.stitle1).setEnabled(true);
-                findViewById(R.id.stitle4).setBackgroundResource(R.drawable.btnshadow);
-                findViewById(R.id.stitle4).setEnabled(true);
+                    part_Plantproduct.setVisibility(View.GONE);
+                    Living_Objects.setVisibility(View.VISIBLE);
+                    findViewById(R.id.recycler3).setVisibility(View.VISIBLE);
+                    List<DataForCardItems> dataForCardItemsList = new ArrayList<>();
+                    dataForCardItemsList = plantQurDBHelper.GetDataForItems(Long.valueOf(Request_id), 16);
+                    AdapterLivingObjects adapterCheckRequest = new AdapterLivingObjects(dataForCardItemsList,emp_committe, context, new ClickCustomItemData() {
+                        @Override
+                        public void plant_click(View view, DataForCardItems itemData) {
+                            SharedPreferences sharedPreferences;
+                            SharedPreferences.Editor prefsEditor;
+                            sharedPreferences = getApplicationContext().getSharedPreferences("SharedPreference", 0);
+                            prefsEditor = sharedPreferences.edit();
+                            prefsEditor.putLong("Item_id", itemData.getRequest_Item_ID());
+                            prefsEditor.apply();
+                            Intent i = new Intent(MainActivity_DetailsListOfChimpments.this, MainActivity_subdetails.class);
+//                            i.putExtra("_id", itemData.getRequest_Item_ID());
+                            i.putExtra("typenum", 16);
+                            startActivity(i);
+                        }
 
+                        @Override
+                        public void comfirm_click(View view, DataForCardItems itemData) {
+
+                        }
+                    });
+                    activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.setAdapterLiving(adapterCheckRequest);
+                    activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.recycler3.setLayoutManager(new LinearLayoutManager(context));
+                    unLiving_Objects.setVisibility(View.GONE);
+                    findViewById(R.id.stitle3).setBackgroundResource(R.drawable.btnshadowclicked);
+                    findViewById(R.id.stitle3).setEnabled(false);
+                    findViewById(R.id.stitle2).setBackgroundResource(R.drawable.btnshadow);
+                    findViewById(R.id.stitle2).setEnabled(true);
+                    findViewById(R.id.stitle1).setBackgroundResource(R.drawable.btnshadow);
+                    findViewById(R.id.stitle1).setEnabled(true);
+                    findViewById(R.id.stitle4).setBackgroundResource(R.drawable.btnshadow);
+                    findViewById(R.id.stitle4).setEnabled(true);
+                }
                 break;
             case R.id.stitle4:
-                if (clicked)
-
+                if (clicked) {
                     plant.setVisibility(View.GONE);
-                part_Plantproduct.setVisibility(View.GONE);
-                unLiving_Objects.setVisibility(View.GONE);
-                Living_Objects.setVisibility(View.VISIBLE);
+                    part_Plantproduct.setVisibility(View.GONE);
+                    unLiving_Objects.setVisibility(View.VISIBLE);
+                    findViewById(R.id.recycler4).setVisibility(View.VISIBLE);
+                    List<DataForCardItems> dataForCardItemsList = new ArrayList<>();
+                    dataForCardItemsList = plantQurDBHelper.GetDataForItems(Long.valueOf(Request_id), 33);
+                    AdapterUnlivingObjects adapterCheckRequest = new AdapterUnlivingObjects(dataForCardItemsList,emp_committe, context, new ClickCustomItemData() {
+                        @Override
+                        public void plant_click(View view, DataForCardItems itemData) {
+                            SharedPreferences sharedPreferences;
+                            SharedPreferences.Editor prefsEditor;
+                            sharedPreferences = getApplicationContext().getSharedPreferences("SharedPreference", 0);
+                            prefsEditor = sharedPreferences.edit();
+                            prefsEditor.putLong("Item_id", itemData.getRequest_Item_ID());
+                            prefsEditor.apply();
+                            Intent i = new Intent(MainActivity_DetailsListOfChimpments.this, MainActivity_subdetails.class);
+//                            i.putExtra("_id", itemData.getRequest_Item_ID());
+                            i.putExtra("typenum", 33);
+                            startActivity(i);
+                        }
+
+                        @Override
+                        public void comfirm_click(View view, DataForCardItems itemData) {
+
+                        }
+                    });
+                    activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.setAdapterunLiving(adapterCheckRequest);
+                    activityMainDetailsListOfChimpmentsBinding.contentDetailsListChimpments.recycler4.setLayoutManager(new LinearLayoutManager(context));
+                }
+                Living_Objects.setVisibility(View.GONE);
                 findViewById(R.id.stitle4).setBackgroundResource(R.drawable.btnshadowclicked);
                 findViewById(R.id.stitle4).setEnabled(false);
                 findViewById(R.id.stitle2).setBackgroundResource(R.drawable.btnshadow);
@@ -386,19 +368,24 @@ public class MainActivity_DetailsListOfChimpments extends AppCompatActivity
                 break;
         }
     }
+
+
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
+        plantQurDBHelper = new PlantQurDBHelper(context);
+        int count = Integer.parseInt(plantQurDBHelper.Get_Data_for_RequestCommittee_working("Total_process", Long.parseLong(Request_id)));
+         if(count==0) {
+             plantQurDBHelper.update_counterResultForAdmin_New(context, ipadrass, Long.parseLong(Request_id),EmpId,true);
+         }else{
+             public_function.AlertDialogTwoButton("برجاء العلم في حالة الخروج لا يمكنك الدخول علي الشحنة مره اخري",context,ipadrass,EmpId,Long.parseLong(Request_id),false);
+         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-       // getMenuInflater().inflate(R.menu.main_activity__details_list_of_chimpments, menu);
         return true;
     }
 
@@ -406,64 +393,27 @@ public class MainActivity_DetailsListOfChimpments extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
         try {
-            public_function.NavMenuClick(id,context,sharedPreferences.getString("Token","")
-                    ,sharedPreferences.getBoolean("ISAdmin",false)
-                    ,sharedPreferences.getInt("RequestCommittee_Status_Id",0),
-                    sharedPreferences.getInt("treatment_data",-1),
-                    sharedPreferences.getInt("sample_data",-1),
-                    sharedPreferences.getInt("request_data",-1),
-                    sharedPreferences.getInt("Committee_Type_Id",0),ipadrass);
+            if (id == R.id.logout) {
+                //for online
+                // public_function.NavMenuClickgetsqlite(context);
+//                forOffline
+//                public_function.NavMenuClickgetsqlite(context,ipadrass,sharedPreferences.getLong("EmpId", (long) -1));
+                public_function.NavMenuClickgetsqlite(context,ipadrass,sharedPreferences.getString("Token",""));
+
+            } else {
+                public_function.NavMenuClickgetsqlite(context, id, sharedPreferences.getLong("Item_id", (long) 0), sharedPreferences.getLong("EmpId", (long) -1), Long.parseLong(sharedPreferences.getString("checkRequest_Id", "")));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        if (id == R.id.language) {
-//            // Handle the camera action
-//        } else if (id == R.id.sample_title) {
-//            Intent i=new Intent(context,MainActivity_SampleWithDraw.class);
-//            i.putExtra("ipadrass", ipadrass);
-//         //   i.putExtra("num_Request", String.valueOf(num_Request));
-//            startActivity(i);
-//        } else if (id == R.id.treatment_title) {
-//         //   Intent i=new Intent(context,TreatmentStatement.class);
-//            Intent i=new Intent(context,MainActivity_TreatmentStatement.class);
-//            i.putExtra("ipadrass", ipadrass);
-//          //  i.putExtra("num_Request", String.valueOf(num_Request));
-//            startActivity(i);
-//
-//        } else if (id == R.id.Committee_title) {
-//            Intent i=new Intent(context,MainActivity_Ex_RequestCommitteeResult.class);
-//            i.putExtra("ipadrass", ipadrass);
-//          //  i.putExtra("num_Request", String.valueOf(num_Request));
-//            startActivity(i);
-//        }else if (id == R.id.todolist) {
-//            Intent i=new Intent(context,MainActivity_Listofchipment.class);
-//            i.putExtra("ipadrass", ipadrass);
-//           // i.putExtra("num_Request", String.valueOf(num_Request));
-//            startActivity(i);
-//        }
-//        else if (id == R.id.logout) {
-//            Intent i=new Intent(context,LogIn.class);
-//            startActivity(i);
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -473,6 +423,7 @@ public class MainActivity_DetailsListOfChimpments extends AppCompatActivity
         String pdf = "http://www.adobe.com/devnet/acrobat/pdfs/pdf_open_parameters.pdf"; // pdf link
         webView.loadUrl("http://drive.google.com/viewerng/viewer?embedded=true&url=" + pdf);
     }
+
     public void shownav(View view) {
         drawer.openDrawer(GravityCompat.START);
     }

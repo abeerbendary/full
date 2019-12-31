@@ -6,9 +6,13 @@
         name="detaillotat"
         type="com.example.abeer.quarantine.viewmodel.ItemLotatData">
     </variable>
+        <variable
+            name="plantItem"
+            type="com.example.abeer.quarantine.viewmodel.ItemData">
+        </variable>
     </data>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layoutDirection="rtl"
@@ -16,39 +20,60 @@
         android:paddingBottom="16dp">
 
         <android.support.v7.widget.CardView
-            android:layout_width="450dp"
-            android:layout_height="178dp"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:layoutDirection="rtl">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="284dp"
-                android:layout_marginRight="284dp"
-                android:layout_marginBottom="8dp"
-                android:text="اللوط"
-                android:textColor="#1f90a5"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="449dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:background="@{plantItem.isExport > 2 ?@color/Extra_card_color:(plantItem.isExport ==2 ? @color/Import_card_color : @color/Export_card_color)}"
+                android:layoutDirection="rtl">
 
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="184dp"
-                android:layout_marginLeft="184dp"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="@{detaillotat.Package_Material_Name}"
-                android:textColor="#1f90a5"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.736"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textView5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="344dp"
+                    android:layout_marginRight="344dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="اللوط"
+                    android:textColor="#1f90a5"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintHorizontal_bias="0.929"
+                    app:layout_constraintVertical_bias="0.476"/>
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{detaillotat.lotdata}"
+                    android:textSize="20sp"
+                    android:layout_marginStart="184dp"
+                    android:layout_marginLeft="184dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.456"/>
+
+
+            </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
 </layout>

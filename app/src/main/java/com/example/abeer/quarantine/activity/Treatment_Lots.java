@@ -8,8 +8,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.location.Address;
+import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +33,7 @@ import com.example.abeer.quarantine.functions.Public_function;
 import com.example.abeer.quarantine.model.Treatment_Result_Model;
 import com.example.abeer.quarantine.presenter.ITreatmentPresenter;
 import com.example.abeer.quarantine.remote.ApiCall;
+import com.example.abeer.quarantine.remote.PlantQurDBHelper;
 import com.example.abeer.quarantine.remote.data.DataManger;
 import com.example.abeer.quarantine.remote.data.IDataValue;
 import com.example.abeer.quarantine.viewmodel.ex_RequestCommitteeResult.SampleData_LOts;
@@ -49,7 +52,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Treatment_Lots extends AppCompatActivity {
+public class Treatment_Lots extends AppCompatActivity  //implements LocationListener
+{
 
     ActivityTreatmentLotsBinding ActivityTreatmentLotsBinding;
     DataManger dataManger;
@@ -63,8 +67,10 @@ public class Treatment_Lots extends AppCompatActivity {
     String ID_itemSelected;
     Gson gson;
     String data;
+    LocationManager manager;
     SharedPreferences sharedPreferences;
     String ipadrass;
+    double lat,longg;
     Public_function public_function;
     final ListTreatmentType[] ListTreatmentType = new ListTreatmentType[1];
     final ListTreatmentCompany[] ListTreatmentCompany = new ListTreatmentCompany[1];
@@ -73,7 +79,7 @@ public class Treatment_Lots extends AppCompatActivity {
     final ListTreatmentPlace[] listTreatmentPlaces = new ListTreatmentPlace[1];
     final List<com.example.abeer.quarantine.viewmodel.ex_RequestCommitteeResult.SampleData_LOts>[] SampleData_LOts = new List[1]  ;
     TextView text;
-
+    String Request_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,22 +94,17 @@ public class Treatment_Lots extends AppCompatActivity {
         Intent intent = getIntent();
         public_function=new Public_function();
         sharedPreferences = getApplicationContext().getSharedPreferences("SharedPreference",0);
-        //Lots_id =  sharedPreferences.getLong("ID",0);
-//        Num_Lots = sharedPreferences.getString("LOTS_NUM","");
         ipadrass= sharedPreferences.getString("ipadrass","");
         ID_lots = intent.getLongExtra("ID",0);
         Num_Lots = intent.getStringExtra("LOTS_NUM");
-//        ipadrass= getIntent().getStringExtra("ipadrass");
+        Request_id = sharedPreferences.getString("checkRequest_Id","");
         Lots_Treatmentvalue.setText(Num_Lots);
         title_valuelot.setText(sharedPreferences.getString("num_Request",""));
-
-        //  setContentView(R.layout.activity_treatment__lots);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
         dataManger.SendVollyRequestJsonObjectGet(this, Request.Method.GET, ipadrass+ApiCall.UrlTreatmentType, new IDataValue() {
             @Override
             public void Success(Object response) {
@@ -258,18 +259,23 @@ public class Treatment_Lots extends AppCompatActivity {
                     public_function.AlertDialog(" برجاء تحديد كمية المادة المستخدمة",context,false);
 
                 }else {
+                    manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+                   Location location = public_function.getlocation(context,manager);
+                    if(location.getLatitude()==0&&location.getLongitude()==0){
+                        location.setLatitude(sharedPreferences.getLong("Latitude",0));
+                        location.setLongitude(sharedPreferences.getLong("Longitude",0));
+                    }
+
                     TreatmentResult.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date()));
-//                TreatmentResult.setAddress(""+address.getAddressLine(0));
-//                TreatmentResult.setLatitude(lat);
-//                TreatmentResult.setLongitude(longg);
-                    TreatmentResult.setCommittee_ID(sharedPreferences.getLong("Committee_ID", 0));
-                    TreatmentResult.setEmployeeId(sharedPreferences.getLong("EmpId", 0));
+                    TreatmentResult.setLatitude(location.getLatitude());
+                    TreatmentResult.setLongitude(location.getLongitude());
                     TreatmentResult.setLot_ID(ID_lots);
                     Treatment_Result_Model treatmentResultModel = new Treatment_Result_Model(TreatmentResult);
                     String jsonInString = gson.toJson(treatmentResultModel);
-                    //   Textsss.setText(jsonInString);
+                    PlantQurDBHelper plantQurDBHelper=new PlantQurDBHelper(context);
+                    plantQurDBHelper.Insert_result("TreatmentData",Long.valueOf(Request_id),"Istreatment",sharedPreferences.getLong("Item_id", (long) 0),ID_lots,jsonInString,jsonInString);
                     Intent resultIntent = new Intent();
-                    resultIntent.putExtra("ValuesPopUpLots", jsonInString);
                     setResult(Activity.RESULT_OK, resultIntent);
                     finish();
                 }
@@ -328,5 +334,5 @@ public class Treatment_Lots extends AppCompatActivity {
                 spinner_place.setVisibility(View.GONE);
         }
     }
-    }
+}
 

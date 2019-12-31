@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.abeer.quarantine">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission
+        android:name="android.permission.ACCESS_MOCK_LOCATION"
+        tools:ignore="MockLocation,ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.CONTROL_LOCATION_UPDATES"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission
         android:name="org.apache.http.legacy"
@@ -16,27 +25,37 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.dashactivity.Textsss">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+        <receiver
+            android:name=".remote.RebootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-        <activity android:name=".activity.Dashsss" />
         <activity
             android:name=".activity.MainActivity_Confirm"
             android:label="@string/title_activity_main__confirm"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".activity.MainActivity_subdetails"
             android:label="@string/title_activity_main_subdetails"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity
+            android:name=".activity.MainActivity_Station"
+            android:label="@string/title_activity_main__station"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity
+            android:name=".activity.MainActivity_Farm"
+            android:label="@string/title_activity_main__farm"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
 
         <uses-library android:name="org.apache.http.legacy" />
@@ -74,20 +93,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.dashactivity.HomeAdmin"
-            android:label="@string/title_activity_HomeAdmin"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.dashactivity.MapsActivity"
-            android:label="@string/title_activity_maps"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activity.MainActivity_TreatmentStatement"
             android:label="@string/title_activity_main__treatment_statement"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.dashactivity.DetailOfDetailItemData"
-            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.MainActivity_DetailsListOfChimpments"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -103,25 +111,14 @@
             android:name=".activity.Generate_barcode"
             android:theme="@style/Theme.AppCompat.Dialog.Alert" />
         <activity
-            android:name=".activity.dashactivity.ListOfChipments"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activity.Treatment_Lots"
             android:theme="@style/Theme.AppCompat.Dialog.Alert" />
-        <activity android:name=".activity.dashactivity.SampleWithDraw" />
         <activity
             android:name=".activity.Sample_Lots"
             android:theme="@style/Theme.AppCompat.Dialog.Alert" />
-        <activity android:name=".activity.dashactivity.TreatmentStatement" />
-        <activity android:name=".activity.dashactivity.DetailsListOfChimpments" />
         <activity
             android:name=".activity.CheckUp_Lots"
             android:theme="@style/Theme.AppCompat.Dialog.Alert" />
-        <activity android:name=".activity.dashactivity.dashfortable" />
-
-        <activity android:name=".activity.dashactivity.Ex_RequestCommitteeResult" />
-
-        <activity android:name=".activity.dashactivity.ExaminationCommittee" />
         <activity
             android:name=".activity.MainActivity_Listofchipment"
             android:label="@string/app_name"

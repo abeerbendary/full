@@ -13,6 +13,10 @@ public class ListItemConstrains   extends BaseObservable {
          this._x0040_temp_table_Constrain= listItemConstrains._x0040_temp_table_Constrain;
 
     }
+
+    public ListItemConstrains() {
+    }
+
     @Bindable
     public String getList_ConstrainText_Ar() { return _x0040_temp_table_Constrain.get(0).ConstrainText_Ar; }
 

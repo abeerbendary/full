@@ -35,22 +35,22 @@
     tools:context=".activity.MainActivity_SampleWithDraw"
     tools:showIn="@layout/app_bar_main_activity__listofchipment"
     android:background="@drawable/h2">
-        <TextView
-            android:id="@+id/txt"
-            android:layout_width="496dp"
-            android:layout_height="304dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.707" />
+        <!--<TextView-->
+            <!--android:id="@+id/txt"-->
+            <!--android:layout_width="496dp"-->
+            <!--android:layout_height="304dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:text="TextView"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintVertical_bias="0.707" />-->
 
         <TextView
             android:id="@+id/title_radio_group_Sample"
@@ -175,7 +175,7 @@
                 android:text=""
                 android:textColor="#1f90a5"
                 android:textDirection="rtl"
-                android:textSize="40sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 tools:textSize="30sp" />
 
@@ -301,7 +301,7 @@
 
                 <TextView
                     android:id="@+id/analysis_type_title"
-                    android:layout_width="180dp"
+                    android:layout_width="230dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/droid"
                     android:text="نوع التحليل  "
@@ -311,7 +311,7 @@
 
                 <Spinner
                     android:id="@+id/Spinner_analysis_type"
-                    android:layout_width="350dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:paddingRight="10dp"
                     android:layout_marginBottom="10dp"
@@ -330,7 +330,7 @@
 
                 <TextView
                     android:id="@+id/laboratory_title"
-                    android:layout_width="180dp"
+                    android:layout_width="230dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/droid"
                     android:text="المعمل "
@@ -341,7 +341,7 @@
 
                 <Spinner
                     android:id="@+id/Spinner_laboratory"
-                    android:layout_width="350dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:paddingRight="10dp"
                     android:layout_marginBottom="10dp"
@@ -391,7 +391,7 @@
 
                 <TextView
                     android:id="@+id/title_place"
-                    android:layout_width="180dp"
+                    android:layout_width="230dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/droid"
                     android:text="مكان السحب "
@@ -402,7 +402,7 @@
 
                 <EditText
                     android:id="@+id/edit_place"
-                    android:layout_width="350dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:paddingRight="10dp"
@@ -421,7 +421,7 @@
 
                 <TextView
                     android:id="@+id/title_SampleSize"
-                    android:layout_width="180dp"
+                    android:layout_width="230dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/droid"
                     android:text="حجم العينة "
@@ -432,7 +432,7 @@
 
                 <EditText
                     android:id="@+id/edit_SampleSize"
-                    android:layout_width="350dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:paddingRight="10dp"
@@ -451,7 +451,7 @@
 
                 <TextView
                     android:id="@+id/title_SampleUnderSize"
-                    android:layout_width="180dp"
+                    android:layout_width="230dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/droid"
                     android:text="حجم تحت العينة "
@@ -463,7 +463,7 @@
 
                 <EditText
                     android:id="@+id/edit_SampleUnderSize"
-                    android:layout_width="350dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:paddingRight="10dp"
@@ -497,7 +497,7 @@
         <LinearLayout
             android:id="@+id/linear_Layout_Sample_part"
             android:layout_width="540dp"
-            android:layout_height="643dp"
+            android:layout_height="700dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="268dp"

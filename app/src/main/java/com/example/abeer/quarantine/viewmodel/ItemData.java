@@ -1,6 +1,7 @@
 package com.example.abeer.quarantine.viewmodel;
 
 import com.example.abeer.quarantine.BR;
+import com.example.abeer.quarantine.model.RequestTreatmentData;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -14,6 +15,16 @@ public class ItemData extends BaseObservable {
     public String  ItemStatus;
     public String ItemPurpose;
     public String Item_ShortName;
+    public String  Item_Strain;
+    public int IsExport;
+    public long Item_Id;
+    public short Has_Result;
+    public int IsAnalysis;
+    public int IsTreatment;
+    public  long Request_Item_ID;
+    public  Object Constrain_Data;
+    public Object Lot_Data;
+    public Object Item_result;
     public ItemData(){
 
     }
@@ -26,8 +37,59 @@ public class ItemData extends BaseObservable {
      this.ItemPurpose  = itemData.ItemPurpose;
     this.ItemStatus =itemData.ItemStatus;
     this.Item_ShortName=itemData.Item_ShortName;
+    this.IsExport=itemData.IsExport;
+    this.Has_Result=itemData.Has_Result;
+    this.IsAnalysis=itemData.IsAnalysis;
+    this.IsTreatment=itemData.IsTreatment;
+    this.Item_Id=itemData.Item_Id;
+    this.Request_Item_ID=itemData.Request_Item_ID;
+    Constrain_Data=itemData.Constrain_Data;
+    Lot_Data=itemData.Lot_Data;
+    Item_result=itemData.Item_result;
     notifyPropertyChanged(BR.itemm);
     }
+
+    public Object getConstrain_Data() {
+        return Constrain_Data;
+    }
+
+    public void setConstrain_Data(Object constrain_Data) {
+        Constrain_Data = constrain_Data;
+    }
+
+    public Object getLot_Data() {
+        return Lot_Data;
+    }
+
+    public void setLot_Data(Object lot_Data) {
+        Lot_Data = lot_Data;
+    }
+
+    public Object getItem_result() {
+        return Item_result;
+    }
+
+    public void setItem_result(Object item_result) {
+        Item_result = item_result;
+    }
+
+    @Bindable
+    public int getIsExport() {
+        return IsExport;
+    }
+
+    public void setIsExport(int isExport) {
+        IsExport = isExport;
+    }
+@Bindable
+    public long getRequest_Item_ID() {
+        return Request_Item_ID;
+    }
+
+    public void setRequest_Item_ID(long request_Item_ID) {
+        Request_Item_ID = request_Item_ID;
+    }
+
     @Bindable
     public String getItem_ShortName() {
         return Item_ShortName;
@@ -101,5 +163,78 @@ public class ItemData extends BaseObservable {
     public void setItem_number(String item_number) {
         Item_number = item_number;
         notifyPropertyChanged(BR.item_number);
+    }
+
+    @Bindable
+    public long getItem_Id() {
+        return Item_Id;
+    }
+
+    public void setItem_Id(long item_Id) {
+        Item_Id = item_Id;
+        notifyPropertyChanged(BR.item_Id);
+
+    }
+
+    @Bindable
+    public int getHas_Result() {
+        return (int)Has_Result;
+    }
+
+    public void setHas_Result(short has_Result) {
+        Has_Result = has_Result;
+        notifyPropertyChanged(BR.has_Result);
+    }
+
+    @Bindable
+    public int getIsAnalysis() {
+        return IsAnalysis;
+    }
+
+    public void setIsAnalysis(int isAnalysis) {
+        IsAnalysis = isAnalysis;
+        notifyPropertyChanged(BR.isAnalysis);
+    }
+
+    @Bindable
+    public int getIsTreatment() {
+        return IsTreatment;
+    }
+
+    public void setIsTreatment(int isTreatment) {
+        IsTreatment = isTreatment;
+        notifyPropertyChanged(BR.isTreatment);
+    }
+
+    @Bindable
+    public String getcounters(){
+        int count=0;
+        String text="";
+        if(getHas_Result()==0){
+
+            text="لم يتم العمل عليه"+"\n";
+                text+= "1 فحص"+"/";
+
+            count=getIsAnalysis();
+            if(count>0){
+                text+=count+"سحب عينة"+"/";
+            }
+            count=getIsTreatment();
+            if(count>0){
+                text+=count+"معالجة";
+            }
+            return text;
+        }else {
+            return "تم العمل عليها";
+        }
+    }
+
+    @Bindable
+    public String getItem_Strain() {
+        return Item_Strain;
+    }
+
+    public void setItem_Strain(String item_Strain) {
+        Item_Strain = item_Strain;
     }
 }

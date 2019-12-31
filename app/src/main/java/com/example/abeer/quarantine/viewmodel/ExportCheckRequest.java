@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.SimpleAdapter;
 
 import com.example.abeer.quarantine.BR;
+import com.example.abeer.quarantine.model.RequestTreatmentData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,20 +34,78 @@ public class ExportCheckRequest extends BaseObservable {
 //              "Committee_ID": 40010
    // RequestCommittee_Status_Id=false
     //
+    //IsExport
+////////////////
+
+//    {
+//
+//            "Emp_Committe": "<fn_CommitteEmployee_GetData Employee_Id=\"10614\" FullName=\"حسين عيد سليمان محمد\" ISAdmin=\"0\" /><fn_CommitteEmployee_GetData Employee_Id=\"10614\" FullName=\"حسين عيد سليمان محمد\" ISAdmin=\"0\" /><fn_CommitteEmployee_GetData Employee_Id=\"14444\" FullName=\"حسين عيد سليمان محمد\" ISAdmin=\"0\" />" +
+//            "<fn_CommitteEmployee_GetData Employee_Id=\"23824\" FullName=\"حسين عيد سليمان محمد\" ISAdmin=\"0\" />" +
+//            "<fn_CommitteEmployee_GetData Employee_Id=\"31810\" FullName=\"محمد السيد محمد حجاب\" ISAdmin=\"1\" />",
+//
+//
+//            "Request_Treatment": "<root>" +
+//            "<ecd checkRequest_Id=\"40035\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"40056\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"40079\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"40083\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"40084\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"40085\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"50087\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"50088\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"50096\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"90116\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"130178\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"130209\" IsExport=\"1\" />" +
+//            "<ecd checkRequest_Id=\"130211\" IsExport=\"1\" />" +
+//            "</root>",
+//
+//
+//            "Request_Treatment_Data": {
+//                 "$id": "2",
+//                "row_num": 1,
+//                "checkRequest_Id": 40035,
+//                "IsExport": 1,
+//                "Item_Data": "<_x0040_Item_Data Item_number=\"57\" Item_Type=\"33\" Item_Id=\"1036\" Item_Name=\"88\" Scientific_Name=\"-----------\" Item_Cat_Name=\"-----------\" Item_Strain=\"-----------\" ItemStatus=\"بند6\" ItemStatus_ID=\"6\" ItemPurpose=\"الزراعة\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"58\" Item_Type=\"33\" Item_Id=\"1033\" Item_Name=\"12\" Scientific_Name=\"-----------\" Item_Cat_Name=\"-----------\" ItemPartTypeName=\"23\" Item_Strain=\"-----------\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"111\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" /> " +
+//                             "<_x0040_Item_Data Item_number=\"59\" Item_Type=\"33\" Item_Id=\"1033\" Item_Name=\"12\" Scientific_Name=\"-----------\" Item_Cat_Name=\"-----------\" ItemPartTypeName=\"3333\" Item_Strain=\"-----------\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"33\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"60\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"8598\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"البحث العلمي\" Item_ShortName=\"الاسم المختصر 4\" Purpose_ID=\"4\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"61\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"88\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"البحث العلمي\" Item_ShortName=\"الاسم المختصر 5&#x9;\" Purpose_ID=\"4\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"62\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"1111\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"111\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"63\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"222\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"22\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"64\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"2222\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"الاسم المختصر 3\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"65\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"44\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"50\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"66\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"44\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"الاسم المختصر 7&#x9;\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"67\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"4444\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"4444\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"68\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"4444\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"الاسم المختصر 6&#x9;\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"69\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"555\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"555\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"70\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"5555\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"55\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"71\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"667765\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"الاسم المختصر 2\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"72\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"76876876\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"عغهغهغف\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />" +
+//                             "<_x0040_Item_Data Item_number=\"73\" Item_Type=\"16\" Item_Id=\"4\" Item_Name=\"بند3\" Scientific_Name=\"-----------\" Item_Cat_Name=\"طور2\" ItemPartTypeName=\"99\" Item_Strain=\"سلالة 1\" ItemStatus=\"بند1\" ItemStatus_ID=\"4\" ItemPurpose=\"الزراعة\" Item_ShortName=\"99\" Purpose_ID=\"1\" PlantCat_ID=\"0\" plantPart_ID=\"0\" plantPartType=\"0\" />",
+//                "Analysis_Total": 0,
+//                "Treatment_Total": 0,
+//                "Check_Total": 4
+//               }
+//    }
+    //////////////////
 
     String $id;
-    String checkRequest_Id;
+    long checkRequest_Id;
     String CheckRequest_Number;
     String Committee_Type_Name;
     String Check_Date;
     String RequestCommittee_Status;
     int RequestCommittee_Status_Id;
-    int Committee_ID;
+    long Committee_ID;
     String BarCode;
     int Row_Num;
+    int IsExport;
     int Committee_Type_Id;
-    String  Emp_Committe;
+   public String  Emp_Committe;
     String Request_Treatment;
+    RequestTreatmentData Request_Treatment_Data;
+
 
     public ExportCheckRequest() {
     }
@@ -65,6 +124,9 @@ public class ExportCheckRequest extends BaseObservable {
         Row_Num=exportCheckRequest.Row_Num;
         Emp_Committe=exportCheckRequest.Emp_Committe;
         Request_Treatment=exportCheckRequest.Request_Treatment;
+        IsExport =exportCheckRequest.IsExport;
+        Request_Treatment_Data=new RequestTreatmentData(exportCheckRequest.Request_Treatment_Data);
+//        Request_Treatment_Data=exportCheckRequest.Request_Treatment_Data;
         notifyPropertyChanged(BR.checkRequest_Number);
 
     }
@@ -72,12 +134,48 @@ public class ExportCheckRequest extends BaseObservable {
         return $id;
     }
 
-    public String getCheckRequest_Id() {
+    public long getCheckRequest_Id() {
         return checkRequest_Id;
     }
 
-    public void setCheckRequest_Id(String checkRequest_Id) {
+    public void setCheckRequest_Id(long checkRequest_Id) {
         this.checkRequest_Id = checkRequest_Id;
+    }
+
+    public RequestTreatmentData getRequest_Treatment_Data() {
+        return Request_Treatment_Data;
+    }
+
+    public void setRequest_Treatment_Data(RequestTreatmentData request_Treatment_Data) {
+        Request_Treatment_Data = request_Treatment_Data;
+    }
+
+    public HashMap Handel_Request_Treatment()throws JSONException{
+        JSONObject jsonObj = new JSONObject();
+        jsonObj = XML.toJSONObject(Request_Treatment);
+        Object f = null;
+        f = jsonObj.get("dbo.check_request_GetHasTreatment");
+        HashMap<String,Integer> hashMap =new HashMap<>();
+        hashMap.put("treatment_data",Integer.valueOf((((JSONObject) f).get("treatment_data").toString())));
+        hashMap.put("sample_data",Integer.valueOf(((JSONObject) f).get("sample_data").toString()));
+        hashMap.put("request_data",Integer.valueOf(((JSONObject) f).get("request_data").toString()));
+        //       HashMap<String,Integer>[] ArrayHash=new HashMap[2];
+//        ArrayHash[0].put("treatment_data",Integer.valueOf((((JSONObject) f).get("treatment_data").toString())));
+//        ArrayHash[1].put("sample_data",Integer.valueOf(((JSONObject) f).get("sample_data").toString()));
+//
+//        /////
+//        List<HashMap<String,Integer>> hashMaps=new ArrayList<>();
+//        hashMaps.add(0,new HashMap<String, Integer>().put("treatment_data",Integer.valueOf((((JSONObject) f).get("treatment_data").toString()))));
+        //    return  ArrayHash;
+        return hashMap;
+    }
+   @Bindable
+    public int getIsExport() {
+        return IsExport;
+    }
+
+    public void setIsExport(int isExport) {
+        IsExport = isExport;
     }
 
     public void set$id(String $id) {
@@ -101,33 +199,36 @@ public class ExportCheckRequest extends BaseObservable {
     }
     @Bindable
     public String getRequestCommittee_Status() {
-        HashMap<String,Integer>hashMap=new HashMap<>();
-        try {
-            hashMap.putAll(Handel_Request_Treatment());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        String text="";
-//        if(hashMap.get("treatment_data")==0 && hashMap.get("sample_data")==0){
-//            RequestCommittee_Status+=
-//        }else
-       if(RequestCommittee_Status_Id==0){
+//        HashMap<String,Integer>hashMap=new HashMap<>();
+//        try {
+//            hashMap.putAll(Handel_Request_Treatment());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        RequestTreatmentData requestTreatmentData=new RequestTreatmentData(getRequest_Treatment_Data());
+//        int count=0;
+//        String text="";
+//       if(RequestCommittee_Status_Id==0){
 
-           text=RequestCommittee_Status+"\n";
+//           text=RequestCommittee_Status+"\n";
+//           count=requestTreatmentData.getCheck_Total();
+//           if(count>0){
+//            text+= count+" فحص"+"/";
+//               //text+= "1 فحص"+"/";
+//           }
+//           count=requestTreatmentData.getTreatment_Total();
+//           if(count>0){
+//            text+=count+"معالجة"+"/";
+//           }
+//           count=requestTreatmentData.getAnalysis_Total();
+//           if(count>0){
+//               text+=count+"سحب عينة";
+//           }
 
-           if(hashMap.get("request_data")>0){
-              text+= "1 فحص"+"/";
-           }
-           if(hashMap.get("treatment_data")>0){
-            text+=hashMap.get("treatment_data")+"معالجة"+"/";
-           }
-           if(hashMap.get("sample_data")>0){
-               text+=hashMap.get("sample_data")+"سحب عينة";
-           }
-         return text;
-       }else {
+//         return text;
+//       }else {
            return RequestCommittee_Status;
-       }
+//       }
     }
 
     public int getCommittee_Type_Id() {
@@ -172,11 +273,11 @@ public class ExportCheckRequest extends BaseObservable {
       //    notifyPropertyChanged(BR.lot_Number);
     }
 
-    public int getCommittee_ID() {
+    public long getCommittee_ID() {
         return Committee_ID;
     }
 
-    public void setCommittee_ID(int committee_ID) {
+    public void setCommittee_ID(long committee_ID) {
         Committee_ID = committee_ID;
     }
 
@@ -218,25 +319,7 @@ public class ExportCheckRequest extends BaseObservable {
         Row_Num = row_Num;
     }
 
-    public HashMap Handel_Request_Treatment()throws JSONException{
-        JSONObject jsonObj = new JSONObject();
-        jsonObj = XML.toJSONObject(Request_Treatment);
-        Object f = null;
-        f = jsonObj.get("dbo.check_request_GetHasTreatment");
-         HashMap<String,Integer> hashMap =new HashMap<>();
-         hashMap.put("treatment_data",Integer.valueOf((((JSONObject) f).get("treatment_data").toString())));
-         hashMap.put("sample_data",Integer.valueOf(((JSONObject) f).get("sample_data").toString()));
-         hashMap.put("request_data",Integer.valueOf(((JSONObject) f).get("request_data").toString()));
-    //       HashMap<String,Integer>[] ArrayHash=new HashMap[2];
-//        ArrayHash[0].put("treatment_data",Integer.valueOf((((JSONObject) f).get("treatment_data").toString())));
-//        ArrayHash[1].put("sample_data",Integer.valueOf(((JSONObject) f).get("sample_data").toString()));
-//
-//        /////
-//        List<HashMap<String,Integer>> hashMaps=new ArrayList<>();
-//        hashMaps.add(0,new HashMap<String, Integer>().put("treatment_data",Integer.valueOf((((JSONObject) f).get("treatment_data").toString()))));
-  //    return  ArrayHash;
-   return hashMap;
-    }
+
     public ArrayList<Emp_Committe> Handle_Emp_Committe() throws JSONException {
         ArrayList<Emp_Committe> emp_committeArrayList =new ArrayList<>();
       //  Emp_Committe emp_committe;
@@ -248,20 +331,19 @@ public class ExportCheckRequest extends BaseObservable {
         }
         Object f = null;
         try {
-            f = jsonObj.get("fn_checkRequest_CommitteEmployee");
+            f = jsonObj.get("fn_CommitteEmployee_GetData");
         } catch (JSONException e) {
             e.printStackTrace();
         }
         if (f instanceof JSONArray) {
-            // hashMap = new HashMap<>();
             for (int i = 0; i < ((JSONArray) f).length(); i++) {
-                emp_committeArrayList.add(new Emp_Committe(((JSONArray) f).getJSONObject(i).get("Employee_Id").toString(),((JSONArray) f).getJSONObject(i).get("ISAdmin").toString(),((JSONArray) f).getJSONObject(i).get("FullName").toString()));
-                //hashMap.put(Integer.parseInt(, ((JSONObject) ((JSONArray) f).getJSONObject(i).get("u")).get("FullName").toString());
+                emp_committeArrayList.add(new Emp_Committe(((JSONArray) f).getJSONObject(i).get("Employee_Id").toString(),((JSONArray) f).getJSONObject(i).get("ISAdmin").toString(),
+                        ((JSONArray) f).getJSONObject(i).get("FullName").toString(),((JSONArray) f).getJSONObject(i).get("LoginName").toString(),((JSONArray) f).getJSONObject(i).get("Password").toString(),((JSONArray) f).getJSONObject(i).get("EmpToken").toString()));
             }
 
+       }else {
+            emp_committeArrayList.add(new Emp_Committe(((JSONObject) f).get("Employee_Id").toString(),((JSONObject) f).get("ISAdmin").toString(),((JSONObject) f).get("FullName").toString(),((JSONObject) f).get("LoginName").toString(),((JSONObject) f).get("Password").toString(),((JSONObject) f).get("EmpToken").toString()));
         }
-        //   ArrayList<String> mData=new ArrayList<>();
-        //    mData.addAll(hashMap.values());
         return  emp_committeArrayList;
     }
 
@@ -270,7 +352,6 @@ public class ExportCheckRequest extends BaseObservable {
     public String getEmp_Committe() {
         ///////////////////call function Handle_Emp_Committe get null///////////////////
         String data="";
-
         ArrayList<Emp_Committe>emp_committeArray = new ArrayList<>();
       //  List<Emp_Committe>emp_committe= new ArrayList<>();
         try {

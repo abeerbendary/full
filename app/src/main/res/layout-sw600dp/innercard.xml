@@ -5,10 +5,15 @@
     <data class="LOTSdatabinding">
         <variable
             name="LOTS"
-            type="com.example.abeer.quarantine.viewmodel.ex_RequestCommitteeResult.SampleData_LOts"/>
+            type="com.example.abeer.quarantine.viewmodel.ItemLotatData"/>
         <variable
             name="CheckUpResult"
             type="com.example.abeer.quarantine.viewmodel.ex_RequestCommitteeResult.Checkup_Result" />
+
+        <variable
+            name="type"
+            type="com.example.abeer.quarantine.viewmodel.DataForCardItems"/>
+
         <variable
             name="clicked"
             type="com.example.abeer.quarantine.presenter.Clickcustum"/>
@@ -23,14 +28,14 @@
         android:paddingBottom="16dp">
 
         <android.support.v7.widget.CardView
-            android:layout_width="492dp"
-            android:layout_height="312dp"
+            android:layout_width="400dp"
+            android:layout_height="300dp"
             android:layout_gravity="center"
             android:layoutDirection="rtl">
 
             <android.support.constraint.ConstraintLayout
-                android:layout_width="377dp"
-                android:layout_height="258dp"
+                android:layout_width="400dp"
+                android:layout_height="300dp"
                 android:layout_gravity="center"
                 android:background="#E9F7F5"
                 android:layoutDirection="rtl">
@@ -55,7 +60,7 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/value_lot"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
                     android:id="@+id/value_lot"
@@ -68,16 +73,16 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/droid"
-                    android:text="@{LOTS.lot_Number}"
+                    android:text="@{``+LOTS.lot_Number}"
                     android:textColor="#0F1213"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/values"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.956"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.47" />
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
                     android:id="@+id/titl"
@@ -99,7 +104,7 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/values"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.91" />
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
                     android:id="@+id/values"
@@ -112,16 +117,16 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/droid"
-                    android:text="@{LOTS.item_Name}"
-                    android:textColor="#0F1213"
+                    android:text="@{type.item_Cat_Name}"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/valuess"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.956"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintVertical_bias="0.74" />
+                <!--android:textColor="#0F1213"-->
 
                 <TextView
                     android:id="@+id/tit2"
@@ -139,6 +144,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
 
+                    app:layout_constraintBottom_toTopOf="@+id/buttsss"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/valuess"
@@ -155,41 +161,41 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/droid"
-                    android:text="@{LOTS.item_Type}"
                     android:textColor="#0F1213"
                     android:textSize="20sp"
-                    android:textStyle="bold"
+                android:text="@{type.isplant==4? @string/plant :(type.isplant==5? @string/product :(type.isplant==16? @string/live :@string/unlive))}"
+                android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/buttsss"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.956"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--android:text="@{type.item_Type==4? @string/plant :(type.item_Type==5? @string/product :(type.item_Type==16? @string/live :@string/unlive))}"-->
 
                 <!--<Button-->
-                    <!--android:id="@+id/btn_generat_lots"-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="50dp"-->
-                    <!--android:layout_marginStart="8dp"-->
-                    <!--android:layout_marginLeft="8dp"-->
-                    <!--android:layout_marginTop="168dp"-->
-                    <!--android:layout_marginEnd="8dp"-->
-                    <!--android:layout_marginRight="8dp"-->
-                    <!--android:layout_marginBottom="8dp"-->
-                    <!--android:background="@drawable/btnshadow"-->
-                    <!--android:fontFamily="@font/droid"-->
-                    <!--android:gravity="center"-->
-                    <!--android:onClick="@{(view)->clicked.Generat_barcod_click(view,LOTS)}"-->
-                    <!--android:Textsss="باركود"-->
-                    <!--android:textColor="#fff"-->
-                    <!--android:textSize="20dp"-->
-                    <!--android:textStyle="bold"-->
-                    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--app:layout_constraintHorizontal_bias="0.09"-->
-                    <!--app:layout_constraintStart_toStartOf="parent"-->
-                    <!--app:layout_constraintTop_toTopOf="parent"-->
-                    <!--app:layout_constraintVertical_bias="1.0" />-->
+                <!--android:id="@+id/btn_generat_lots"-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginStart="8dp"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_marginTop="168dp"-->
+                <!--android:layout_marginEnd="8dp"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:background="@drawable/btnshadow"-->
+                <!--android:fontFamily="@font/droid"-->
+                <!--android:gravity="center"-->
+                <!--android:onClick="@{(view)->clicked.Generat_barcod_click(view,LOTS)}"-->
+                <!--android:Textsss="باركود"-->
+                <!--android:textColor="#fff"-->
+                <!--android:textSize="20dp"-->
+                <!--android:textStyle="bold"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintHorizontal_bias="0.09"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--app:layout_constraintVertical_bias="1.0" />-->
 
                 <Button
                     android:id="@+id/buttsss"

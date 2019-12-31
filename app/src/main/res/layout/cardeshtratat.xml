@@ -6,6 +6,10 @@
             name="detailItemDataList2"
             type="com.example.abeer.quarantine.viewmodel.ItemConstrainsData">
         </variable>
+        <variable
+            name="plantItem"
+            type="com.example.abeer.quarantine.viewmodel.ItemData">
+        </variable>
 </data>
 <LinearLayout
     android:layout_width="wrap_content"

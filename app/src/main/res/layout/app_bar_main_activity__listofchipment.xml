@@ -27,20 +27,20 @@
         <!--android:visibility="gone"-->
         <!--android:id="@+id/main_activity_login"/>-->
 
-    <include layout="@layout/activity_ex__request_committee_result"
-        android:visibility="gone"
-        android:id="@+id/request_committee"/>
+    <!--<include layout="@layout/activity_ex__request_committee_result"-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/request_committee"/>-->
 
     <!--<include layout="@layout/activity_list_of_chipments"-->
         <!--android:visibility="gone"-->
         <!--android:id="@+id/list_chipments"/>-->
 
-    <include layout="@layout/activity_sample_with_draw"
-        android:visibility="gone"
-        android:id="@+id/sample_with"/>
+    <!--<include layout="@layout/activity_sample_with_draw"-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/sample_with"/>-->
 
-    <include layout="@layout/activity_treatment_statement"
-        android:visibility="gone"
-        android:id="@+id/treatments"/>
+    <!--<include layout="@layout/activity_treatment_statement"-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/treatments"/>-->
 
 </android.support.design.widget.CoordinatorLayout>

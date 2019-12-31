@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.abeer.quarantine.R;
 import com.example.abeer.quarantine.databinding.ItemDatadaLotattabinding;
+import com.example.abeer.quarantine.viewmodel.ItemData;
 import com.example.abeer.quarantine.viewmodel.ItemLotatData;
 
 import java.util.ArrayList;
@@ -17,13 +18,16 @@ import java.util.List;
 public class AdapterLotat extends RecyclerView.Adapter<AdapterLotat.Holder> {
     List<ItemLotatData> itemData;
     Context context;
-    public AdapterLotat(List<ItemLotatData> itemDatas, Context context) {
+    ItemData t;
+    public AdapterLotat(List<ItemLotatData> itemDatas, Context context,ItemData item) {
         itemData = itemDatas;
         this.context = context;
+        t=item;
     }
-    public AdapterLotat(ArrayList<ItemLotatData> itemDatas, Context context) {
+    public AdapterLotat(ArrayList<ItemLotatData> itemDatas, Context context,ItemData item) {
         itemData = itemDatas;
         this.context = context;
+        t=item;
     }
     @NonNull
     @Override
@@ -54,6 +58,7 @@ public class AdapterLotat extends RecyclerView.Adapter<AdapterLotat.Holder> {
         public void bind(Object o)
         {
             itemDatadaLotattabinding.setDetaillotat((ItemLotatData)o);
+            itemDatadaLotattabinding.setPlantItem(t);
         }
     }
 }

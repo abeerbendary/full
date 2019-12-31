@@ -22,4 +22,19 @@
     <string name="title_activity_mapforadmin">Map</string>
     <string name="title_activity_main_subdetails">MainActivity_subdetails</string>
     <string name="title_activity_main__confirm">MainActivity_Confirm</string>
+    <string name="plant">نبات</string>
+    <string name="product">منتج</string>
+    <string name="live">بند خاضع</string>
+    <string name="unlive">بند غير خاضع</string>
+    <string name="title_activity_main__farm">MainActivity_Farm</string>
+    <string name="title_activity_main__station">MainActivity_Station</string>
+    <string name="Accept">موافق</string>
+    <string name="Reject">غير موافق</string>
+    <string name="Import">تفاصيل الشحنة (وارد)</string>
+    <string name="Export">تفاصيل الشحنة (صادر)</string>
+    <string name="Extra">التفاصيل</string>
+    <string name="cardListdetails">تفاصيل الشحنة</string>
+    <string name="cardListresult">النتيجة</string>
+    <string name="cardListresultconfirm">تاكيد النتيجة</string>
+    <string name="countedvalidation">العدد اكبر من الطبيعي</string>
 </resources>

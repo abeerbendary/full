@@ -99,7 +99,7 @@
                 android:text=""
                 android:textColor="#000"
                 android:textDirection="rtl"
-                android:textSize="40sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 tools:textSize="30sp" />
 
@@ -151,11 +151,12 @@
                 android:padding="10dp"
                 android:textColor="#000"
                 android:textDirection="rtl"
-                android:textSize="50sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                tools:textSize="30sp"
                 app:layout_constraintHorizontal_bias="0.262"
                 tools:ignore="MissingConstraints"
-                tools:textSize="30sp" />/>
+                 />/>
         </LinearLayout>
 
 
@@ -576,6 +577,7 @@
                         android:fontFamily="@font/droid"
                         android:inputType="numberDecimal"
                         android:paddingRight="10dp"
+                        android:textColor="#000"
                         android:text="@={``+TreatmentResult.thermalSealNumber}"
                         android:textSize="30dp"
                         android:textStyle="bold" />
@@ -628,6 +630,7 @@
                         android:inputType="number"
                         android:maxLength="2"
                         android:paddingRight="10dp"
+                        android:textColor="#000"
                         android:text="@={``+TreatmentResult.exposure_Minute}"
                         android:textSize="30dp"
                         android:textStyle="bold" />
@@ -651,6 +654,7 @@
                         android:fontFamily="@font/droid"
                         android:inputType="number"
                         android:maxLength="2"
+                        android:textColor="#000"
                         android:paddingRight="10dp"
                         android:text="@={``+TreatmentResult.exposure_Hour}"
                         android:textSize="30dp"
@@ -675,6 +679,7 @@
                         android:fontFamily="@font/droid"
                         android:inputType="number"
                         android:maxLength="3"
+                        android:textColor="#000"
                         android:paddingRight="10dp"
                         android:text="@={``+TreatmentResult.exposure_Day}"
                         android:textSize="30dp"

@@ -31,8 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="312dp"
                 android:layout_gravity="center"
-                android:background="#E9F7F5"
-                android:layoutDirection="rtl">
+                android:background="@{CheckRequest.isExport > 2 ?(CheckRequest.isExport ==2 ?@color/Export_card_color : @color/Import_card_color) : @color/Extra_card_color }"
+            android:layoutDirection="rtl">
 
                 <TextView
                     android:id="@+id/title"

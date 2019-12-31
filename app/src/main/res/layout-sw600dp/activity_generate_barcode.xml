@@ -11,7 +11,7 @@
     </data>
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="600dp"
         android:layout_height="match_parent"
         android:background="#E9F7F5"
         tools:context=".activity.Generate_barcode">
@@ -30,124 +30,144 @@
             android:gravity="center"
             android:layoutDirection="rtl"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout26"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.052"
             tools:ignore="MissingConstraints">
 
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerbarcod"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="760dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="8dp"
                 android:adapter="@{AdapterBarcod}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.547"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.419" />
+                />
         </LinearLayout>
         <!--<ImageView-->
-            <!--android:id="@+id/image_barcode"-->
-            <!--android:layout_width="360dp"-->
-            <!--android:layout_height="143dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginLeft="8dp"-->
-            <!--android:layout_marginTop="50dp"-->
-            <!--android:layout_marginEnd="8dp"-->
-            <!--android:layout_marginRight="8dp"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--app:layout_constraintBottom_toTopOf="@+id/var"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintHorizontal_bias="0.546"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintVertical_bias="1.0"-->
-            <!--app:srcCompat="@color/cardview_shadow_end_color" />-->
+        <!--android:id="@+id/image_barcode"-->
+        <!--android:layout_width="360dp"-->
+        <!--android:layout_height="143dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginTop="50dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/var"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.546"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_bias="1.0"-->
+        <!--app:srcCompat="@color/cardview_shadow_end_color" />-->
 
         <!--<TextView-->
-            <!--android:id="@+id/var"-->
-            <!--android:layout_width="360dp"-->
-            <!--android:layout_height="43dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginLeft="8dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:layout_marginEnd="8dp"-->
-            <!--android:layout_marginRight="8dp"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:gravity="center"-->
-            <!--android:letterSpacing="1"-->
-            <!--android:Textsss=""-->
-            <!--android:textColor="#000"-->
-            <!--android:textSize="18sp"-->
-            <!--app:layout_constraintBottom_toTopOf="@+id/btn_cancel"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintHorizontal_bias="0.546"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintVertical_bias="0.81" />-->
+        <!--android:id="@+id/var"-->
+        <!--android:layout_width="360dp"-->
+        <!--android:layout_height="43dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:gravity="center"-->
+        <!--android:letterSpacing="1"-->
+        <!--android:Textsss=""-->
+        <!--android:textColor="#000"-->
+        <!--android:textSize="18sp"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/btn_cancel"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.546"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_bias="0.81" />-->
 
-
-        <Button
-            android:id="@+id/print"
-            android:layout_width="124dp"
-            android:layout_height="70dp"
+        <LinearLayout
+            android:id="@+id/linearLayout26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="120dp"
-            android:layout_marginRight="120dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/btnshadow"
-            android:fontFamily="@font/droid"
-            android:onClick="printer_barcode"
-            android:text="طباعة "
-            android:textColor="#fff"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.937"
-            app:layout_constraintStart_toEndOf="@+id/btn_cancel"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.959"
-            tools:textSize="30sp" />
-
-        <!--android:onClick="@{(view)->ISamplePresenter.OnClickcancel(view,SampleResult)}"-->
-
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="124dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="112dp"
-            android:layout_marginLeft="112dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/btnshadow"
-            android:fontFamily="@font/droid"
-            android:lineSpacingExtra="30sp"
-            android:onClick="cancel"
-            android:text="إلغاء"
-            android:textColor="#fff"
-            android:textSize="25sp"
-            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.541"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.96"
-            tools:ignore="MissingConstraints"
-            tools:textSize="30sp" />
+            app:layout_constraintVertical_bias="1.0">
+
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="124dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="112dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/btnshadow"
+                android:fontFamily="@font/droid"
+                android:lineSpacingExtra="30sp"
+                android:onClick="cancel"
+                android:text="إلغاء"
+                android:textColor="#fff"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.96"
+                tools:ignore="MissingConstraints"
+                tools:textSize="30sp" />
+
+            <Space
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/print"
+                android:layout_width="124dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="120dp"
+                android:layout_marginRight="120dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/btnshadow"
+                android:fontFamily="@font/droid"
+                android:onClick="printer_barcode"
+                android:text="طباعة "
+                android:textColor="#fff"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.937"
+                app:layout_constraintStart_toEndOf="@+id/btn_cancel"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.959"
+                tools:textSize="30sp" />
+
+            <!--android:onClick="@{(view)->ISamplePresenter.OnClickcancel(view,SampleResult)}"-->
+
+
+        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>

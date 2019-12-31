@@ -10,6 +10,12 @@
             android:title="تغير اللغة"
            />
         <item
+            android:id="@+id/todolist"
+            android:icon="@drawable/ic_view_list_black_24dp"
+            android:title="مهام اليوم"
+
+            />
+        <item
             android:id="@+id/Committee_title"
             android:icon="@drawable/ic_check_circle_black_24dp"
             android:title="فحص الشحنة"
@@ -19,17 +25,17 @@
             android:icon="@drawable/ic_sample"
             android:title="سحب عينة"
             android:fontFamily="@font/droid"/>
-        <item
-            android:id="@+id/todolist"
-            android:icon="@drawable/ic_view_list_black_24dp"
-            android:title="مهام اليوم"
 
-           />
         <item
             android:id="@+id/treatment_title"
             android:icon="@drawable/ic_treatment"
             android:title="معالجة الشحنة"
          />
+        <item
+            android:id="@+id/confirm_title"
+            android:icon="@drawable/ic_confirm"
+            android:title="تاكيدالنتيجة"
+            />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_exit_to_app_black_24dp"

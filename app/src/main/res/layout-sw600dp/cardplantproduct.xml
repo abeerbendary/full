@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data class="Plantproductbinding">
+        <import type="android.view.View"/>
         <variable
-            name="clicked"
-            type="com.example.abeer.quarantine.presenter.ClickCustomItemData_plantproduct">
-
+            name="clicksed"
+            type="com.example.abeer.quarantine.presenter.ClickCustomItemData">
         </variable>
         <variable
-            name="plantproductItem"
-            type="com.example.abeer.quarantine.viewmodel.plantProduct.ItemData_PlantProduct">
-        </variable>
+            name="DataForCardItems"
+            type="com.example.abeer.quarantine.viewmodel.DataForCardItems"/>
+        <variable
+            name="ISadmin"
+            type="com.example.abeer.quarantine.viewmodel.Emp_Committe"/>
     </data>
 
     <LinearLayout
@@ -21,78 +24,183 @@
         android:padding="8dp"
         android:paddingBottom="16dp">
 
-        <androidx.cardview.widget.CardView
+        <android.support.v7.widget.CardView
             android:layout_width="450dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layoutDirection="rtl">
-            <TextView
-                android:id="@+id/title"
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="462dp"
+                android:layout_height="280dp"
+                android:layout_gravity="center"
+            android:background="@{DataForCardItems.IsExport > 2 ?@color/Extra_card_color:(DataForCardItems.isExport ==2 ? @color/Import_card_color : @color/Export_card_color)}"
+                android:layoutDirection="rtl">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout29"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                    android:id="@+id/titleplant"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/droid"
+                    android:text="اسم النبات"
+                    android:textColor="#1f90a5"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    />
+
+                    <TextView
+                    android:id="@+id/value_plant"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/droid"
+                    android:text="@{DataForCardItems.item_Cat_Name}" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout30"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.924">
+
+                <TextView
+                android:id="@+id/titleproduct"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="284dp"
-                android:layout_marginRight="284dp"
-                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/droid"
-                android:text="اسم النبات"
+                android:text="اسم المنتج"
                 android:textColor="#1f90a5"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/titl"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/value_lot"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.25" />
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/value_lot"
+                <TextView
+                android:id="@+id/value_product"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="184dp"
-                android:layout_marginLeft="184dp"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/droid"
-                android:text="@{plantproductItem.item_Cat_Name}"
-                app:layout_constraintBottom_toTopOf="@+id/values"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.736"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                android:text="@{DataForCardItems.item_Name}" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/linearLayout30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout31"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.911">
 
-            <Button
-                android:id="@+id/buttsss"
-                android:layout_width="160dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="90dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/btnshadow"
-                android:fontFamily="@font/droid"
-                android:onClick="@{(view)->clicked.plantProduct_click(view,plantproductItem)}"
-                android:text="تفاصيل النبات"
-                android:textColor="#fff"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                    <TextView
+                        android:id="@+id/title1"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:fontFamily="@font/droid"
+                        android:text="المطلوب"
+                        android:textColor="#1f90a5"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="284dp"
+                        tools:layout_editor_absoluteY="30dp" />
 
+                    <TextView
+                        android:id="@+id/value"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/droid"
+                        android:text="@{DataForCardItems.getcounters}"
+                        tools:layout_editor_absoluteX="23dp"
+                        tools:layout_editor_absoluteY="31dp" />
 
-        </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0">
+
+                    <Button
+                        android:id="@+id/productconfirm"
+                        android:layout_width="160dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/btnshadow"
+                        android:fontFamily="@font/droid"
+                        android:text="تاكيد"
+                        android:textColor="#fff"
+                        android:onClick="@{(view)->clicksed.comfirm_click(view,DataForCardItems)}"
+                        android:visibility="@{ISadmin.ISAdmin==1 ? View.GONE : (DataForCardItems.has_Result > 0 ?View.VISIBLE : View.GONE)}"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/buttsss"
+                        android:layout_width="160dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/btnshadow"
+                        android:fontFamily="@font/droid"
+                       android:onClick="@{(view)->clicksed.plant_click(view,DataForCardItems)}"
+                       android:text="تفاصيل المنتج"
+                        android:textColor="#fff"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 </layout>

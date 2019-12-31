@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start"
-    android:layout_gravity="right"
-    android:layoutDirection="rtl"
-    android:textDirection="rtl">
-
-    <include
-        layout="@layout/app_bar_main_activity__listofchipment"
+<layout  xmlns:bind="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="labs"
+            type="com.example.abeer.quarantine.viewmodel.sampleWithDraw.ListLabName">
+        </variable>
+    </data>
+    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <include layout="@layout/activity_sample_with_draw"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"  />
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main_activity__listofchipment"
-        app:menu="@menu/activity_main__listofchipment_drawer" />
+        tools:openDrawer="start"
+        android:layout_gravity="right"
+        android:layoutDirection="rtl"
+        android:textDirection="rtl">
 
-</android.support.v4.widget.DrawerLayout>
+        <include
+            layout="@layout/app_bar_main_activity__listofchipment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <include layout="@layout/content_main_activity__sample_with_draw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/content_sample_with_draw"/>
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_main_activity__listofchipment"
+            app:menu="@menu/activity_main__listofchipment_drawer"  />
+    </android.support.v4.widget.DrawerLayout>
+</layout>
+
+
+

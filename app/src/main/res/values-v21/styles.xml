@@ -5,4 +5,37 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+
+    <style name="ExportCheck" parent="@style/Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal">#C1E9E3</item>
+        <item name="android:colorControlActivated">#C1E9E3</item>
+        <item name="android:colorControlHighlight">#118876</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
+
+
+    <style name="ImportCheck" parent="@style/Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal">#E6BFCE</item>
+        <item name="android:colorControlActivated">#E6BFCE</item>
+        <item name="android:colorControlHighlight">#c51162</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
+
+
+    <style name="ExtraCheck" parent="@style/Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal">#ECE8E8</item>
+        <item name="android:colorControlActivated">#ECE8E8</item>
+        <item name="android:colorControlHighlight">#8C9297</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
+
+    <style name="confirmCheck" parent="@style/Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal">#4AA6B8</item>
+        <item name="android:colorControlActivated">#4AA6B8</item>
+        <item name="android:colorControlHighlight">#1f90a5</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
+
+
 </resources>

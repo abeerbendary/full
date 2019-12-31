@@ -33,6 +33,115 @@ public class ListDetailsCheckRequestNew extends BaseObservable {
     public String Check_Date;
     public String RequestCommittee_Status;
     public String Item_Data;
+    public  int CheckRequest_Id;
+    public  String Attachment_Data;
+    public  String Exporter_Address;
+    public String ImportCompany_Address;
+    public boolean IsAccepted;
+    public int TransitCountry;
+    public boolean IsAcceppted;
+    public String ImportCompany_data;
+    public  String Request_Fees;
+    public  String ExportRequest_xml;
+    public   String AttachmentData_Xml;
+    public     String Item_Data_xml;
+    public   String ImportCompany_xml;
+    public  int IsExport;
+
+    public ListDetailsCheckRequestNew() {
+
+    }
+    //Item_Data=null
+    public ListDetailsCheckRequestNew(boolean IsOffline,ListDetailsCheckRequestNew L) {
+        this.$id = L.$id;
+        CheckRequest_Number = L.CheckRequest_Number;
+        Reciever_Name = L.Reciever_Name;
+        ImportCompany = L.ImportCompany;
+        ImportCountry_Name = L.ImportCountry_Name;
+        Outlet_Name = L.Outlet_Name;
+        Govern_Name = L.Govern_Name;
+        General_Admin_Name = L.General_Admin_Name;
+        PortNational_Shippment_Name = L.PortNational_Shippment_Name;
+        Exporter_ID = L.Exporter_ID;
+        ExporterType_Id =L. ExporterType_Id;
+        ExporterType_Name = L.ExporterType_Name;
+        Importer_Exporter_Id = L.Importer_Exporter_Id;
+        Importer_Exporter_Name = L.Importer_Exporter_Name;
+        this.port_arrive_Name = L.port_arrive_Name;
+        this.port_transite_Name = L.port_transite_Name;
+        this.c_transite_country_Name =L.c_transite_country_Name;
+        Shipment_Mean_Name = L.Shipment_Mean_Name;
+        Transport_Mean_Name = L.Transport_Mean_Name;
+        Ship_Name = L.Ship_Name;
+        Request_ApprovedUnapprovedID = L.Request_ApprovedUnapprovedID;
+        Request_ApprovedUnapprovedType = L.Request_ApprovedUnapprovedType;
+        Request_ApprovedUnapproved_StationName = L.Request_ApprovedUnapproved_StationName;
+        Request_ApprovedUnapproved_Place_Ar_Name = L.Request_ApprovedUnapproved_Place_Ar_Name;
+        Request_ApprovedUnapproved_Place_Address_Ar =L. Request_ApprovedUnapproved_Place_Address_Ar;
+        Committee_Type = L.Committee_Type;
+        Check_Date = L.Check_Date;
+        RequestCommittee_Status = L.RequestCommittee_Status;
+        Item_Data =null;
+        CheckRequest_Id = L.CheckRequest_Id;
+        Attachment_Data = L.Attachment_Data;
+        Exporter_Address = L.Exporter_Address;
+        ImportCompany_Address = L.ImportCompany_Address;
+        IsAccepted = L.IsAccepted;
+        TransitCountry = L.TransitCountry;
+        IsAcceppted = L.IsAcceppted;
+        ImportCompany_data = L.ImportCompany_data;
+        Request_Fees =L. Request_Fees;
+        ExportRequest_xml =L. ExportRequest_xml;
+        AttachmentData_Xml = L.AttachmentData_Xml;
+        Item_Data_xml =L.Item_Data_xml;
+        ImportCompany_xml = L.ImportCompany_xml;
+        IsExport = L.IsExport;
+    }
+    public ListDetailsCheckRequestNew(ListDetailsCheckRequestNew L) {
+        this.$id = L.$id;
+        CheckRequest_Number = L.CheckRequest_Number;
+        Reciever_Name = L.Reciever_Name;
+        ImportCompany = L.ImportCompany;
+        ImportCountry_Name = L.ImportCountry_Name;
+        Outlet_Name = L.Outlet_Name;
+        Govern_Name = L.Govern_Name;
+        General_Admin_Name = L.General_Admin_Name;
+        PortNational_Shippment_Name = L.PortNational_Shippment_Name;
+        Exporter_ID = L.Exporter_ID;
+        ExporterType_Id =L. ExporterType_Id;
+        ExporterType_Name = L.ExporterType_Name;
+        Importer_Exporter_Id = L.Importer_Exporter_Id;
+        Importer_Exporter_Name = L.Importer_Exporter_Name;
+        this.port_arrive_Name = L.port_arrive_Name;
+        this.port_transite_Name = L.port_transite_Name;
+        this.c_transite_country_Name =L.c_transite_country_Name;
+        Shipment_Mean_Name = L.Shipment_Mean_Name;
+        Transport_Mean_Name = L.Transport_Mean_Name;
+        Ship_Name = L.Ship_Name;
+        Request_ApprovedUnapprovedID = L.Request_ApprovedUnapprovedID;
+        Request_ApprovedUnapprovedType = L.Request_ApprovedUnapprovedType;
+        Request_ApprovedUnapproved_StationName = L.Request_ApprovedUnapproved_StationName;
+        Request_ApprovedUnapproved_Place_Ar_Name = L.Request_ApprovedUnapproved_Place_Ar_Name;
+        Request_ApprovedUnapproved_Place_Address_Ar =L. Request_ApprovedUnapproved_Place_Address_Ar;
+        Committee_Type = L.Committee_Type;
+        Check_Date = L.Check_Date;
+        RequestCommittee_Status = L.RequestCommittee_Status;
+        Item_Data =L. Item_Data;
+        CheckRequest_Id = L.CheckRequest_Id;
+        Attachment_Data = L.Attachment_Data;
+        Exporter_Address = L.Exporter_Address;
+        ImportCompany_Address = L.ImportCompany_Address;
+        IsAccepted = L.IsAccepted;
+        TransitCountry = L.TransitCountry;
+        IsAcceppted = L.IsAcceppted;
+        ImportCompany_data = L.ImportCompany_data;
+        Request_Fees =L. Request_Fees;
+        ExportRequest_xml =L. ExportRequest_xml;
+        AttachmentData_Xml = L.AttachmentData_Xml;
+        Item_Data_xml =L.Item_Data_xml;
+        ImportCompany_xml = L.ImportCompany_xml;
+        IsExport = L.IsExport;
+    }
 
     @Bindable
     public String get$id() {
@@ -60,6 +169,16 @@ public class ListDetailsCheckRequestNew extends BaseObservable {
         Reciever_Name = reciever_Name;
         notifyPropertyChanged(BR.detaill);
     }
+
+    @Bindable
+    public int getIsExport() {
+        return IsExport;
+    }
+
+    public void setIsExport(int isExport) {
+        IsExport = isExport;
+    }
+
     @Bindable
     public String getImportCompany() {
         return ImportCompany;
@@ -295,6 +414,110 @@ public class ListDetailsCheckRequestNew extends BaseObservable {
     public void setItem_Data(String item_Data) {
         Item_Data = item_Data;
         notifyPropertyChanged(BR.detaill);
+    }
+
+    public int getCheckRequest_Id() {
+        return CheckRequest_Id;
+    }
+
+    public void setCheckRequest_Id(int checkRequest_Id) {
+        CheckRequest_Id = checkRequest_Id;
+    }
+
+    public String getAttachment_Data() {
+        return Attachment_Data;
+    }
+
+    public void setAttachment_Data(String attachment_Data) {
+        Attachment_Data = attachment_Data;
+    }
+
+    public String getExporter_Address() {
+        return Exporter_Address;
+    }
+
+    public void setExporter_Address(String exporter_Address) {
+        Exporter_Address = exporter_Address;
+    }
+
+    public String getImportCompany_Address() {
+        return ImportCompany_Address;
+    }
+
+    public void setImportCompany_Address(String importCompany_Address) {
+        ImportCompany_Address = importCompany_Address;
+    }
+
+    public boolean isAccepted() {
+        return IsAccepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        IsAccepted = accepted;
+    }
+
+    public int getTransitCountry() {
+        return TransitCountry;
+    }
+
+    public void setTransitCountry(int transitCountry) {
+        TransitCountry = transitCountry;
+    }
+
+    public boolean isAcceppted() {
+        return IsAcceppted;
+    }
+
+    public void setAcceppted(boolean acceppted) {
+        IsAcceppted = acceppted;
+    }
+
+    public String getImportCompany_data() {
+        return ImportCompany_data;
+    }
+
+    public void setImportCompany_data(String importCompany_data) {
+        ImportCompany_data = importCompany_data;
+    }
+
+    public String getRequest_Fees() {
+        return Request_Fees;
+    }
+
+    public void setRequest_Fees(String request_Fees) {
+        Request_Fees = request_Fees;
+    }
+
+    public String getExportRequest_xml() {
+        return ExportRequest_xml;
+    }
+
+    public void setExportRequest_xml(String exportRequest_xml) {
+        ExportRequest_xml = exportRequest_xml;
+    }
+
+    public String getAttachmentData_Xml() {
+        return AttachmentData_Xml;
+    }
+
+    public void setAttachmentData_Xml(String attachmentData_Xml) {
+        AttachmentData_Xml = attachmentData_Xml;
+    }
+
+    public String getItem_Data_xml() {
+        return Item_Data_xml;
+    }
+
+    public void setItem_Data_xml(String item_Data_xml) {
+        Item_Data_xml = item_Data_xml;
+    }
+
+    public String getImportCompany_xml() {
+        return ImportCompany_xml;
+    }
+
+    public void setImportCompany_xml(String importCompany_xml) {
+        ImportCompany_xml = importCompany_xml;
     }
 
 //

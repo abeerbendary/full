@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/language"
+            android:icon="@drawable/ic_lang"
+            android:title="تغير اللغة"
+            />
+        <item
+            android:id="@+id/Committee_title"
+            android:icon="@drawable/ic_check_circle_black_24dp"
+            android:title="فحص الشحنة"
+            android:fontFamily="@font/droid"/>
+        <item
+            android:id="@+id/sample_title"
+            android:icon="@drawable/ic_sample"
+            android:title="سحب عينة"
+            android:fontFamily="@font/droid"/>
+        <item
+            android:id="@+id/todolist"
+            android:icon="@drawable/ic_view_list_black_24dp"
+            android:title="مهام اليوم"
+
+            />
+        <item
+            android:id="@+id/treatment_title"
+            android:icon="@drawable/ic_treatment"
+            android:title="معالجة الشحنة"
+            />
+        <item
+            android:id="@+id/confirm_title"
+            android:icon="@drawable/ic_confirm"
+            android:title="تاكيدالنتيجة"
+            />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="تسجيل خروج"
+            android:fontFamily="@font/droid"/>
+    </group>
+
+    <item android:title="المساعدة"
+        android:fontFamily="@font/droid">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_library_books_black"
+                android:title="دليل المستخدم"
+                android:fontFamily="@font/droid"
+                />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_iscc"
+                android:title="ملكية المنظومة"
+                android:fontFamily="@font/droid"/>
+        </menu>
+    </item>
+
+</menu>

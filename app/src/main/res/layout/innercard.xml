@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data class="LOTSdatabinding">
         <variable
             name="LOTS"
-            type="com.example.abeer.quarantine.viewmodel.ex_RequestCommitteeResult.SampleData_LOts"/>
+            type="com.example.abeer.quarantine.viewmodel.ItemLotatData"/>
+        <variable
+            name="CheckUpResult"
+            type="com.example.abeer.quarantine.viewmodel.ex_RequestCommitteeResult.Checkup_Result" />
+
+        <variable
+            name="type"
+            type="com.example.abeer.quarantine.viewmodel.DataForCardItems"/>
 
         <variable
             name="clicked"
@@ -13,110 +20,210 @@
     </data>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
+        android:gravity="center"
+        android:layoutDirection="rtl"
         android:paddingBottom="16dp">
 
-<android.support.v7.widget.CardView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:layout_width="400dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layoutDirection="rtl">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="400dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:background="#E9F7F5"
+                android:layoutDirection="rtl">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="69dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="84dp"
-            android:layout_marginRight="84dp"
-            android:layout_marginBottom="8dp"
-            android:text="رقم اللوط :"
-            app:layout_constraintBottom_toTopOf="@+id/titl"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.696"
-            app:layout_constraintStart_toEndOf="@+id/value_lot"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.51" />
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="248dp"
+                    android:layout_marginRight="248dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/droid"
+                    android:text="رقم اللوط"
+                    android:textColor="#1f90a5"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/titl"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/value_lot"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
-            android:id="@+id/value_lot"
-            android:layout_width="85dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@{LOTS.lot_Number}"
-            app:layout_constraintBottom_toTopOf="@+id/values"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.325"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/value_lot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/droid"
+                    android:text="@{``+LOTS.lot_Number}"
+                    android:textColor="#0F1213"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/values"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.956"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
-            android:id="@+id/titl"
-            android:layout_width="76dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="108dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginRight="80dp"
-            android:layout_marginBottom="8dp"
-            android:text="الصنف"
-            app:layout_constraintBottom_toTopOf="@+id/buttsss"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.72"
-            app:layout_constraintStart_toEndOf="@+id/values"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.538" />
+                <TextView
+                    android:id="@+id/titl"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="248dp"
+                    android:layout_marginRight="248dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/droid"
+                    android:text="الصنف"
+                    android:textColor="#1f90a5"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/tit2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/values"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
-            android:id="@+id/values"
-            android:layout_width="88dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="108dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@{LOTS.item_Name}"
-            app:layout_constraintBottom_toTopOf="@+id/buttsss"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.328"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.538" />
+                <TextView
+                    android:id="@+id/values"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/droid"
+                    android:text="@{type.item_Cat_Name}"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/valuess"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.956"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.74" />
+                <!--android:textColor="#0F1213"-->
 
-        <Button
-            android:id="@+id/buttsss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="168dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="النتيجة"
-            android:onClick="@{(view)->clicked.button_click(view,LOTS)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.573"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-    </android.support.constraint.ConstraintLayout>
-</android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/tit2"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="124dp"
+                    android:layout_marginEnd="228dp"
+                    android:layout_marginRight="228dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/droid"
+                    android:text="نوع الصنف"
+                    android:textColor="#1f90a5"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+
+                    app:layout_constraintBottom_toTopOf="@+id/buttsss"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/valuess"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--app:layout_constraintBottom_toTopOf="@+id/btn_generat_lots"-->
+                <TextView
+                    android:id="@+id/valuess"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="124dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/droid"
+                    android:textColor="#0F1213"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="@{type.isplant==4? @string/plant :(type.isplant==5? @string/product :(type.isplant==16? @string/live :@string/unlive))}"
+                    app:layout_constraintBottom_toTopOf="@+id/buttsss"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.956"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--android:text="@{type.item_Type==4? @string/plant :(type.item_Type==5? @string/product :(type.item_Type==16? @string/live :@string/unlive))}"-->
+
+                <!--<Button-->
+                <!--android:id="@+id/btn_generat_lots"-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginStart="8dp"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_marginTop="168dp"-->
+                <!--android:layout_marginEnd="8dp"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:background="@drawable/btnshadow"-->
+                <!--android:fontFamily="@font/droid"-->
+                <!--android:gravity="center"-->
+                <!--android:onClick="@{(view)->clicked.Generat_barcod_click(view,LOTS)}"-->
+                <!--android:Textsss="باركود"-->
+                <!--android:textColor="#fff"-->
+                <!--android:textSize="20dp"-->
+                <!--android:textStyle="bold"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintHorizontal_bias="0.09"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent"-->
+                <!--app:layout_constraintVertical_bias="1.0" />-->
+
+                <Button
+                    android:id="@+id/buttsss"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/btnshadow"
+                    android:fontFamily="@font/droid"
+                    android:gravity="center"
+                    android:onClick="@{(view)->clicked.button_click(view,LOTS)}"
+                    android:text="النتيجة"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.403"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.958" />
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 
 </layout>

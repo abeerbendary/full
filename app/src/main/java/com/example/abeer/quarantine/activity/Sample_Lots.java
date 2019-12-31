@@ -1,10 +1,17 @@
 package com.example.abeer.quarantine.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +27,7 @@ import com.example.abeer.quarantine.functions.Public_function;
 import com.example.abeer.quarantine.model.Sample_Result_Model;
 import com.example.abeer.quarantine.presenter.ISamplePresenter;
 import com.example.abeer.quarantine.remote.ApiCall;
+import com.example.abeer.quarantine.remote.PlantQurDBHelper;
 import com.example.abeer.quarantine.remote.data.DataManger;
 import com.example.abeer.quarantine.remote.data.IDataValue;
 import com.example.abeer.quarantine.viewmodel.ex_RequestCommitteeResult.Checkup_Result;
@@ -38,7 +46,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Sample_Lots extends AppCompatActivity {
+public class Sample_Lots extends AppCompatActivity //implements LocationListener
+{
     ActivitySampleLotsBinding ActivitySampleLotsBinding;
     Sample_Result sampleResult;
     DataManger dataManger;
@@ -53,6 +62,9 @@ public class Sample_Lots extends AppCompatActivity {
     Gson gson;
     String ipadrass;
     Public_function public_function;
+    double lat,longg;
+    LocationManager manager;
+    String Request_id;
 
     SharedPreferences sharedPreferences;
     final ListLabName[] listLabs = new ListLabName[1];
@@ -73,12 +85,10 @@ public class Sample_Lots extends AppCompatActivity {
         Intent intent = getIntent();
 
         sharedPreferences = getApplicationContext().getSharedPreferences("SharedPreference",0);
-      //Lots_id =  sharedPreferences.getLong("ID",0);
-//        Num_Lots = sharedPreferences.getString("LOTS_NUM","");
         ipadrass= sharedPreferences.getString("ipadrass","");
          Num_Lots = intent.getStringExtra("LOTS_NUM");
          ID_lots =  intent.getLongExtra("ID",0);
-       // ipadrass= getIntent().getStringExtra("ipadrass");
+        Request_id = sharedPreferences.getString("checkRequest_Id", "");
         LotsSamplevalue.setText(Num_Lots);
         public_function=new Public_function();
         title_value.setText(sharedPreferences.getString("num_Request",""));
@@ -87,7 +97,6 @@ public class Sample_Lots extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         dataManger.SendVollyRequestJsonObjectGet(this, Request.Method.GET, ipadrass+ApiCall.AnalysisType, new IDataValue() {
             @Override
             public void Success(Object response) {
@@ -105,8 +114,6 @@ public class Sample_Lots extends AppCompatActivity {
         ActivitySampleLotsBinding.setISamplePresenter(new ISamplePresenter() {
             @Override
             public void OnItemSelectedSpinner_Treatment(AdapterView<?> parent, View view, int pos, long id, Sample_Result sample_result) {
-
-                // CheckUpResult.setKingdom_ID(Integer.parseInt(IDItemSelect));
                 ID_itemSelected = String.valueOf(listAnalysis[0].obj.get(pos).Value);
                 sample_result.setAnalysisType_ID(Short.parseShort(ID_itemSelected));
                 Toast.makeText(context, ""+ID_itemSelected, Toast.LENGTH_SHORT).show();
@@ -137,32 +144,31 @@ public class Sample_Lots extends AppCompatActivity {
             @Override
             public void OnClickSaveLots(View view, Sample_Result sampleResult) {
 
-//                sampleResult.setDate(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date()));
-//                sampleResult.setLot_ID(ID_lots);
-//                String result = gson.toJson(sampleResult);
-//                Intent resultIntent = new Intent();
-//                resultIntent.putExtra("ValuesPopUpLots",result);
-//                setResult(Activity.RESULT_OK,resultIntent);
-//                finish();
-                //////////////////
-
                 if(sampleResult.getAnalysisType_ID()==0) {
 
                     public_function.AlertDialog("برجاء تحديد نوع التحليل ",context,false);
                 }else {
+                    manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                  Location  location=public_function.getlocation(context,manager);
+                    if(location.getLatitude()==0 &&location.getLongitude()==0){
+                        location.setLatitude(sharedPreferences.getLong("Latitude",0));
+                        location.setLongitude(sharedPreferences.getLong("Longitude",0));
+                    }
                     sampleResult.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date()));
                     sampleResult.setLot_ID(ID_lots);
                     sampleResult.setBarCode(sharedPreferences.getString("BarCode","")+ID_lots);
-                    sampleResult.setCommittee_ID(sharedPreferences.getLong("Committee_ID",0));
-                    sampleResult.setEmployeeId(sharedPreferences.getLong("EmpId",0));
                     Sample_Result_Model sampleResultModel = new Sample_Result_Model(sampleResult);
+                    sampleResultModel.setLatitude(location.getLatitude());
+                    sampleResultModel.setLongitude(location.getLongitude());
                     String jsonInString = gson.toJson(sampleResultModel);
+                    PlantQurDBHelper plantQurDBHelper=new PlantQurDBHelper(context);
+                    plantQurDBHelper.Insert_result("SampleData",Long.valueOf(Request_id),"Isanalysis",sharedPreferences.getLong("Item_id", (long) 0),ID_lots,jsonInString,jsonInString);
                     Intent resultIntent = new Intent();
-                    resultIntent.putExtra("ValuesPopUpLots", jsonInString);
+                    resultIntent.putExtra("Num_Lots",Num_Lots);
+                    resultIntent.putExtra("barcode",sampleResult.getBarCode());
                     setResult(Activity.RESULT_OK, resultIntent);
                     finish();
                 }
-                /////////////////////////
             }
 
             @Override

@@ -114,7 +114,7 @@
             android:gravity="center"
             android:inputType="numberSigned"
             android:layoutDirection="rtl"
-            android:text="123456789"
+            android:text=""
             android:textColor="#1f90a5"
             android:textDirection="rtl"
             android:textSize="30sp"
@@ -143,25 +143,26 @@
         tools:ignore="MissingConstraints">
 
         <Button
-            android:id="@+id/Btn_check1"
+            android:id="@+id/Btn_check3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
             android:background="@drawable/btnshadow"
             android:fontFamily="@font/droid"
-            android:onClick="treatment"
+            android:onClick="Exrequest"
             android:paddingLeft="20dp"
+            android:layout_marginRight="10dp"
             android:paddingRight="20dp"
-            android:text="معالجة الشحنة"
+            android:text=" فحص الشحنه"
             android:textColor="#fff"
             android:textSize="25sp"
             android:textStyle="bold" />
+
 
         <Button
             android:id="@+id/Btn_check2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/btnshadow"
             android:fontFamily="@font/droid"
             android:onClick="sample"
@@ -170,19 +171,19 @@
             android:text="سحب العينة"
             android:textColor="#fff"
             android:textSize="25sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/Btn_check3"
+            android:id="@+id/Btn_check1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:background="@drawable/btnshadow"
             android:fontFamily="@font/droid"
-            android:onClick="Exrequest"
+            android:onClick="treatment"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text=" فحص الشحنه"
+            android:text="معالجة الشحنة"
             android:textColor="#fff"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -550,7 +551,7 @@
             android:gravity="center"
             android:layoutDirection="rtl"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -743,7 +744,7 @@
         android:layoutDirection="rtl"
         android:orientation="vertical"
         android:paddingBottom="20dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup_Examination"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -761,7 +762,7 @@
             android:gravity="center"
             android:layoutDirection="rtl"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/btns_Treatment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -1187,6 +1188,21 @@
         tools:ignore="MissingConstraints">
 
         <Button
+            android:id="@+id/Btn_check5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btnshadow"
+            android:fontFamily="@font/droid"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="حفظ"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:textSize="30sp" />
+
+        <Button
             android:id="@+id/Btn_check4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -1201,20 +1217,7 @@
             android:textStyle="bold"
             tools:textSize="30sp" />
 
-        <Button
-            android:id="@+id/Btn_check5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/btnshadow"
-            android:fontFamily="@font/droid"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="حفظ"
-            android:textColor="#fff"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            tools:textSize="30sp" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

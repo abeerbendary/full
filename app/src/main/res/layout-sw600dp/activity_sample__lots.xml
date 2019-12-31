@@ -33,7 +33,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="650dp"
-        android:layout_height="match_parent"
+        android:layout_height="1000dp"
         android:background="#E9F7F5">
 
         <LinearLayout
@@ -85,10 +85,10 @@
                 android:gravity="center"
                 android:inputType="numberSigned"
                 android:layoutDirection="rtl"
+                android:padding="10dp"
                 android:textColor="#000"
                 android:textDirection="rtl"
-                android:padding="10dp"
-                android:textSize="50sp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintHorizontal_bias="0.262"
                 tools:ignore="MissingConstraints"
@@ -151,7 +151,7 @@
                     android:padding="10dp"
                     android:textColor="#000"
                     android:textDirection="rtl"
-                    android:textSize="50sp"
+                    android:textSize="20dp"
                     android:textStyle="bold"
                     app:layout_constraintHorizontal_bias="0.262"
                     tools:ignore="MissingConstraints"
@@ -167,7 +167,7 @@
 
                 <TextView
                     android:id="@+id/analysis_type_title"
-                    android:layout_width="180dp"
+                    android:layout_width="230dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/droid"
                     android:text="نوع التحليل  "
@@ -178,7 +178,7 @@
 
                 <Spinner
                     android:id="@+id/Spinner_analysis_type"
-                    android:layout_width="350dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rectshadow"
@@ -200,7 +200,7 @@
 
                 <TextView
                     android:id="@+id/laboratory_title"
-                    android:layout_width="180dp"
+                    android:layout_width="230dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/droid"
                     android:text="المعمل "
@@ -211,7 +211,7 @@
 
                 <Spinner
                     android:id="@+id/Spinner_laboratory"
-                    android:layout_width="350dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rectshadow"
@@ -264,7 +264,7 @@
 
                 <TextView
                     android:id="@+id/title_place"
-                    android:layout_width="180dp"
+                    android:layout_width="230dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/droid"
                     android:text="مكان السحب "
@@ -275,7 +275,7 @@
 
                 <EditText
                     android:id="@+id/edit_place"
-                    android:layout_width="350dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rectshadow"
@@ -295,7 +295,7 @@
 
                 <TextView
                     android:id="@+id/title_SampleSize"
-                    android:layout_width="180dp"
+                    android:layout_width="230dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/droid"
                     android:text="حجم العينة "
@@ -306,7 +306,7 @@
 
                 <EditText
                     android:id="@+id/edit_SampleSize"
-                    android:layout_width="350dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rectshadow"
@@ -326,7 +326,7 @@
 
                 <TextView
                     android:id="@+id/title_SampleUnderSize"
-                    android:layout_width="180dp"
+                    android:layout_width="230dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/droid"
                     android:text="حجم تحت العينة "
@@ -338,7 +338,7 @@
 
                 <EditText
                     android:id="@+id/edit_SampleUnderSize"
-                    android:layout_width="350dp"
+                    android:layout_width="300dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/rectshadow"
@@ -384,6 +384,7 @@
             android:layout_marginBottom="8dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
+            android:layoutDirection="rtl"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -396,7 +397,7 @@
                 android:id="@+id/Btn_Save"
                 android:layout_width="124dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
+                android:layout_marginLeft="40dp"
                 android:background="@drawable/btnshadow"
                 android:fontFamily="@font/droid"
                 android:onClick="@{(view)->ISamplePresenter.OnClickSaveLots(view,SampleResult)}"
@@ -405,6 +406,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 tools:textSize="30sp" />
+
 
             <Button
                 android:id="@+id/btn_cancel"
@@ -418,7 +420,7 @@
                 android:textColor="#fff"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                tools:textSize="30sp" />
+                tools:textSize="30sp"/>
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>

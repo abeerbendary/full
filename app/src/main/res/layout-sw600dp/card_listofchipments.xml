@@ -29,12 +29,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layoutDirection="rtl">
+            <!--android:background="@{CheckRequest? @color/Export_card_color : @color/Import_card_color}"-->
 
+            <!--android:background="@{CheckRequest.isExport > 2 ?(CheckRequest.isExport ==2 ?@color/Export_card_color : @color/Extra_card_color) : @color/Import_card_color}"-->
+
+            <!--android:background="@{ ?  :fdgfggdg}"-->
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="#E9F7F5"
+                android:background="@{CheckRequest.isExport > 2 ?@color/Extra_card_color:(CheckRequest.isExport ==2 ? @color/Import_card_color : @color/Export_card_color)}"
                 android:layoutDirection="rtl">
 
                 <LinearLayout
@@ -88,7 +92,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/layout2">
+                  >
 
                     <TextView
                         android:id="@+id/title"
@@ -191,10 +195,10 @@
                     android:layout_marginRight="24dp"
                     app:layout_constraintBottom_toTopOf="@+id/buttsss"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0">
+                    app:layout_constraintVertical_bias="0.893">
 
                     <TextView
                         android:id="@+id/membertitle"
@@ -236,7 +240,7 @@
                     android:background="@drawable/btnshadow"
                     android:fontFamily="@font/droid"
                     android:onClick="@{(view)->clicked.CheckRequest_click(view,CheckRequest)}"
-                    android:text="تفاصيل الشحنة"
+                    android:text="@{CheckRequest.isExport > 2 ? @string/cardListresult : @string/cardListdetails}"
                     android:textColor="#fff"
                     android:textSize="20dp"
                     android:textStyle="bold"

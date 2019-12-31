@@ -5,5 +5,7 @@
     <!--<color name="colorAccent">#F5F5F5</color>-->
     <color name="colorAccent">#9C27B0</color>
     <color name="my_spinner_text_color">#03A9F4</color>
-
+    <color name="Export_card_color">#E9F7F5</color>
+    <color name="Import_card_color">#FFF7E9EE</color>
+    <color name="Extra_card_color">#EEECEC</color>
 </resources>

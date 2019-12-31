@@ -30,8 +30,25 @@
     <include layout="@layout/content_main_activity_subdetails"
         android:layout_width="match_parent"
         android:id="@+id/content_main_activity_subdetails"
-        android:layout_height="match_parent"/>
+        android:visibility="visible"
+        android:layout_height="match_parent" />
 
+    <!--<include layout="@layout/activity_main_plant_product"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/content_main_activity_main_plant_product"-->
+        <!--android:layout_height="match_parent" />-->
+
+    <!--<include layout="@layout/activity_main_livingobjects"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/content_main_activity_main_livingobjects"-->
+        <!--android:layout_height="match_parent" />-->
+    <!--<include layout="@layout/main_activity_unlivingobjects"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:visibility="gone"-->
+        <!--android:id="@+id/content_main_activity_main_unlivingobjects"-->
+        <!--android:layout_height="match_parent" />-->
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

@@ -9,31 +9,31 @@
     </data>
 <android.support.constraint.ConstraintLayout
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:padding="8dp"
     android:gravity="center"
     android:layoutDirection="rtl">
 
 
     <android.support.v7.widget.CardView
-        android:layout_width="562dp"
+        android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="425dp"
+            android:background="#fff"
             android:gravity="center">
 
             <LinearLayout
@@ -45,7 +45,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:gravity="center"
+                android:gravity="right"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
@@ -56,8 +56,9 @@
 
                 <TextView
                     android:id="@+id/title_num"
-                    android:layout_width="180dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="70dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/droid"
                     android:layoutDirection="rtl"
                     android:text="رقم الطلب"
@@ -83,16 +84,16 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/droid"
-                    android:gravity="center"
                     android:inputType="numberSigned"
                     android:layoutDirection="rtl"
-                    android:padding="10dp"
+                    android:padding="5dp"
                     android:text="@{cardBarcod.request_Num}"
                     android:textColor="#000"
+                    android:textSize="20dp"
                     android:textDirection="rtl"
                     app:layout_constraintHorizontal_bias="0.262"
                     tools:ignore="MissingConstraints"
-                    tools:textSize="25sp" />
+                      />
             </LinearLayout>
 
             <LinearLayout
@@ -105,10 +106,10 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:gravity="center"
+                android:gravity="right"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@+id/scrollView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -134,16 +135,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/droid"
-                    android:gravity="center"
                     android:inputType="numberSigned"
                     android:layoutDirection="rtl"
-                    android:padding="10dp"
+                    android:padding="5dp"
                     android:text="@{cardBarcod.lot_num}"
                     android:textColor="#000"
                     android:textDirection="rtl"
                     app:layout_constraintHorizontal_bias="0.262"
                     tools:ignore="MissingConstraints"
-                    tools:textSize="25sp" />
+                    android:textSize="20dp" />
             </LinearLayout>
 
             <ImageView
@@ -163,6 +163,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@color/cardview_shadow_end_color" />
 
+            <!--android:letterSpacing="1"-->
+
             <TextView
                 android:id="@+id/var"
                 android:layout_width="360dp"
@@ -174,10 +176,9 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
-                android:letterSpacing="1"
                 android:text="@{cardBarcod.barcodetext}"
                 android:textColor="#000"
-                android:textSize="18sp"
+                android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.example.abeer.quarantine.R;
 import com.example.abeer.quarantine.databinding.ItemDatadaconstraintabinding;
 import com.example.abeer.quarantine.viewmodel.ItemConstrainsData;
+import com.example.abeer.quarantine.viewmodel.ItemData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,17 @@ public class AdapterEshtratat extends RecyclerView.Adapter<AdapterEshtratat.Hold
 
     List<ItemConstrainsData> itemData;
     Context context;
-    public AdapterEshtratat(List<ItemConstrainsData> itemDatas, Context context) {
+    ItemData t;
+
+    public AdapterEshtratat(List<ItemConstrainsData> itemDatas, Context context,ItemData item) {
         itemData = itemDatas;
         this.context = context;
+        t=item;
     }
-    public AdapterEshtratat(ArrayList<ItemConstrainsData> itemDatas, Context context) {
+    public AdapterEshtratat(ArrayList<ItemConstrainsData> itemDatas, Context context,ItemData item) {
         itemData = itemDatas;
         this.context = context;
+        t=item;
     }
     @NonNull
     @Override
@@ -57,9 +62,8 @@ public class AdapterEshtratat extends RecyclerView.Adapter<AdapterEshtratat.Hold
         public void bind(Object o)
         {
             itemDatadaconstraintabinding.setDetailItemDataList2((ItemConstrainsData)o);
+            itemDatadaconstraintabinding.setPlantItem(t);
         }
-
-
 
     }
 }

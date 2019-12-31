@@ -17,6 +17,12 @@
     android:background="@drawable/background"
     tools:context=".activity.LogIn">
 
+
+
+
+    <!--android:hint="sssss"-->
+    <!--172.16.2.92:9050-->
+    <!--10.5.1.6:9090-->
     <EditText
         android:id="@+id/ipadarss"
         android:layout_width="606dp"
@@ -28,7 +34,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="sssss"
+        android:text="10.5.1.6:9090"
+        android:visibility="invisible"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +90,6 @@
                 android:layout_height="45dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
-                android:onClick="imageclick"
                 android:src="@drawable/users"
                 app:layout_constraintBottom_toTopOf="@+id/passicon"
                 app:layout_constraintHorizontal_bias="1.0"

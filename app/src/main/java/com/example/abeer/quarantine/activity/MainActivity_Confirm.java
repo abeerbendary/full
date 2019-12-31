@@ -14,13 +14,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.example.abeer.quarantine.R;
 import com.example.abeer.quarantine.databinding.ActivityMainConfirmBinding;
 
 import com.example.abeer.quarantine.functions.Public_function;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity_Confirm extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,7 +37,12 @@ public class MainActivity_Confirm extends AppCompatActivity
     String num_Request;
     String Request_id;
     DrawerLayout drawer;
+    ScrollView Examination_full1;
+    ScrollView Sample_full ;
+    ScrollView Treatment_full;
     ActivityMainConfirmBinding activityMainConfirmBinding;
+    String data;
+    JSONObject jsonObject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +64,9 @@ public class MainActivity_Confirm extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 //        });
+        Examination_full1=findViewById(R.id.scrollView_Examination_full1);
+        Sample_full =findViewById(R.id.scrollView_Sample_full);
+        Treatment_full=findViewById(R.id.scrollView_Treatment_full);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layoutt);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -64,6 +78,8 @@ public class MainActivity_Confirm extends AppCompatActivity
         sharedPreferences = getApplicationContext().getSharedPreferences("SharedPreference",0);
         num_Request = sharedPreferences.getString("num_Request","");
         Request_id = sharedPreferences.getString("checkRequest_Id","");
+        data = sharedPreferences.getString("confirmresult","");
+        ((TextView)findViewById(R.id.value_request)).setText(num_Request);
         ipadrass= sharedPreferences.getString("ipadrass","");
         public_function=new Public_function();
 
@@ -107,54 +123,79 @@ public class MainActivity_Confirm extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         try {
-            public_function.NavMenuClick(id,context,sharedPreferences.getString("Token","")
-                    ,sharedPreferences.getBoolean("ISAdmin",false)
-                    ,sharedPreferences.getInt("RequestCommittee_Status_Id",0),
-                    sharedPreferences.getInt("treatment_data",-1),
-                    sharedPreferences.getInt("sample_data",-1),
-                    sharedPreferences.getInt("request_data",-1),
-                    sharedPreferences.getInt("Committee_Type_Id",0),ipadrass);
+            if (id == R.id.logout) {
+                //for online
+                // public_function.NavMenuClickgetsqlite(context);
+//                forOffline
+                public_function.NavMenuClickgetsqlite(context,ipadrass,sharedPreferences.getString("Token",""));
+            } else {
+                public_function.NavMenuClickgetsqlite(context, id, sharedPreferences.getLong("Item_id", (long) 0), sharedPreferences.getLong("EmpId", (long) -1), Long.parseLong(sharedPreferences.getString("checkRequest_Id", "")));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//        if (id == R.id.language) {
-//            // Handle the camera action
-//        } else if (id == R.id.sample_title) {
-//            Intent i=new Intent(context,MainActivity_SampleWithDraw.class);
-//            i.putExtra("ipadrass", ipadrass);
-//         //   i.putExtra("num_Request", String.valueOf(num_Request));
-//            startActivity(i);
-//        } else if (id == R.id.treatment_title) {
-//         //   Intent i=new Intent(context,TreatmentStatement.class);
-//            Intent i=new Intent(context,MainActivity_TreatmentStatement.class);
-//            i.putExtra("ipadrass", ipadrass);
-//          //  i.putExtra("num_Request", String.valueOf(num_Request));
-//            startActivity(i);
-//
-//        } else if (id == R.id.Committee_title) {
-//            Intent i=new Intent(context,MainActivity_Ex_RequestCommitteeResult.class);
-//            i.putExtra("ipadrass", ipadrass);
-//          //  i.putExtra("num_Request", String.valueOf(num_Request));
-//            startActivity(i);
-//        }else if (id == R.id.todolist) {
-//            Intent i=new Intent(context,MainActivity_Listofchipment.class);
-//            i.putExtra("ipadrass", ipadrass);
-//           // i.putExtra("num_Request", String.valueOf(num_Request));
-//            startActivity(i);
-//        }
-//        else if (id == R.id.logout) {
-//            Intent i=new Intent(context,LogIn.class);
-//            startActivity(i);
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     public void shownav(View view) {
         drawer.openDrawer(GravityCompat.START);
+    }
+
+    public void Exrequest(View view) {
+        public_function.AlertDialog("لم يتم الانتهاء من الصفحه ", context,false);
+
+     Examination_full1.setVisibility(View.VISIBLE);
+     Sample_full.setVisibility(View.GONE);
+     Treatment_full.setVisibility(View.GONE);
+    }
+
+    public void sample(View view) {
+        public_function.AlertDialog("لم يتم الانتهاء من الصفحه ", context,false);
+
+        Examination_full1.setVisibility(View.GONE);
+        Sample_full.setVisibility(View.VISIBLE);
+        Treatment_full.setVisibility(View.GONE);
+    }
+
+    public void treatment(View view) {
+        public_function.AlertDialog("لم يتم الانتهاء من الصفحه ", context,false);
+
+        Examination_full1.setVisibility(View.GONE);
+        Sample_full.setVisibility(View.GONE);
+        Treatment_full.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        public_function.AlertDialog("لم يتم الانتهاء من الصفحه ", context,false);
+
+
+//        try {
+//             jsonObject = new JSONObject(data);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//
+//            if(jsonObject.get("Committe_Dto").equals("")){
+//
+//                ((TextView)findViewById(R.id.Btn_check3)).setVisibility(View.GONE);
+//
+//            }
+//            if(jsonObject.get("SampleDto").equals("")){
+//                ((TextView)findViewById(R.id.Btn_check2)).setVisibility(View.GONE);
+//
+//            }
+//            if(jsonObject.get("Treatment_Dto").equals("")){
+//                ((TextView)findViewById(R.id.Btn_check1)).setVisibility(View.GONE);
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+
+
     }
 }

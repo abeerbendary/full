@@ -36,6 +36,28 @@
 
     /////////////////////right//////
 
+
+    <style name="ExportCheck" parent="@style/Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal">#C1E9E3</item>
+        <item name="android:colorControlActivated">#C1E9E3</item>
+        <item name="android:colorControlHighlight">#118876</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
+
+    <style name="ImportCheck" parent="@style/Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal">#E6BFCE</item>
+        <item name="android:colorControlActivated">#E6BFCE</item>
+        <item name="android:colorControlHighlight">#c51162</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
+
+
+    <style name="ExtraCheck" parent="@style/Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal">#A2C8E6</item>
+        <item name="android:colorControlActivated">#A2C8E6</item>
+        <item name="android:colorControlHighlight">#2B74AD</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
     <style name="kj" parent="">
         <item name="android:spinnerItemStyle">@style/mySpinnerItemStyle</item>
         <item name="android:spinnerDropDownItemStyle">@style/Widget.AppCompat.Base.Spinner</item>
@@ -70,7 +92,12 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
+    <style name="confirmCheck" parent="@style/Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal">#4AA6B8</item>
+        <item name="android:colorControlActivated">#4AA6B8</item>
+        <item name="android:colorControlHighlight">#1f90a5</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

@@ -5,33 +5,39 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.abeer.quarantine.R;
-import com.example.abeer.quarantine.activity.MainActivity_Ex_RequestCommitteeResult;
-import com.example.abeer.quarantine.activity.MainActivity_TreatmentStatement;
-import com.example.abeer.quarantine.activity.dashactivity.Ex_RequestCommitteeResult;
-import com.example.abeer.quarantine.activity.dashactivity.TreatmentStatement;
 import com.example.abeer.quarantine.databinding.LOTSdatabinding;
 import com.example.abeer.quarantine.presenter.Clickcustum;
+import com.example.abeer.quarantine.viewmodel.DataForCardItems;
+import com.example.abeer.quarantine.viewmodel.ItemData;
+import com.example.abeer.quarantine.viewmodel.ItemLotatData;
+import com.example.abeer.quarantine.viewmodel.ListItemLotat;
 import com.example.abeer.quarantine.viewmodel.ex_RequestCommitteeResult.SampleData_LOts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapterforRecycler extends RecyclerView.Adapter<MyAdapterforRecycler.Holder> {
 
 
-    List<SampleData_LOts>Sampledata_lots;
+    ListItemLotat Sampledata_lots;
     Clickcustum clickcustum;
     Context context;
+DataForCardItems itemData;
+    public MyAdapterforRecycler(DataForCardItems itemData, ListItemLotat sampledata_lots, Context context, Clickcustum clickcustum) {
 
-    public MyAdapterforRecycler(List<SampleData_LOts> sampledata_lots, Context context, Clickcustum clickcustum) {
+      this.itemData=itemData;
         Sampledata_lots = sampledata_lots;
         this.clickcustum = clickcustum;
         this.context = context;
     }
+    public MyAdapterforRecycler(ArrayList<ItemLotatData> sampledata_lots, Context context) {
+        Sampledata_lots._x0040_temp_table_Lot = sampledata_lots;
 
+        this.context = context;
+    }
     public MyAdapterforRecycler() {
     }
 
@@ -49,8 +55,8 @@ public class MyAdapterforRecycler extends RecyclerView.Adapter<MyAdapterforRecyc
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
-        SampleData_LOts sampleData_lOts = Sampledata_lots.get(i);
-        holder.bind(sampleData_lOts,clickcustum);
+        ItemLotatData sampleData_lOts = Sampledata_lots._x0040_temp_table_Lot.get(i);
+        holder.bind(itemData,sampleData_lOts,clickcustum);
         holder.lotsdatabinding.setClicked(clickcustum);
 //        if(context instanceof MainActivity_TreatmentStatement ||context instanceof MainActivity_Ex_RequestCommitteeResult) {
 //            holder.lotsdatabinding.btnGeneratLots.setVisibility(View.GONE);
@@ -59,7 +65,7 @@ public class MyAdapterforRecycler extends RecyclerView.Adapter<MyAdapterforRecyc
 
     @Override
     public int getItemCount() {
-        return Sampledata_lots.size();
+        return Sampledata_lots._x0040_temp_table_Lot.size();
     }
 
     public class Holder extends RecyclerView.ViewHolder {
@@ -68,8 +74,9 @@ public class MyAdapterforRecycler extends RecyclerView.Adapter<MyAdapterforRecyc
             super(lotsdatabinding.getRoot());
             this.lotsdatabinding=lotsdatabinding;
         }
-        public void bind(Object obj, final Clickcustum clickcustum) {
-           lotsdatabinding.setLOTS((SampleData_LOts) obj);
+        public void bind(DataForCardItems item,Object obj, final Clickcustum clickcustum) {
+           lotsdatabinding.setLOTS((ItemLotatData) obj);
+           lotsdatabinding.setType(item);
            lotsdatabinding.executePendingBindings();
         }
     }
