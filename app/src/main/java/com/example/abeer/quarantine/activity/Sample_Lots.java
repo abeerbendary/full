@@ -162,7 +162,7 @@ public class Sample_Lots extends AppCompatActivity //implements LocationListener
                     sampleResultModel.setLongitude(location.getLongitude());
                     String jsonInString = gson.toJson(sampleResultModel);
                     PlantQurDBHelper plantQurDBHelper=new PlantQurDBHelper(context);
-                    plantQurDBHelper.Insert_result("SampleData",Long.valueOf(Request_id),"Isanalysis",sharedPreferences.getLong("Item_id", (long) 0),ID_lots,jsonInString,jsonInString);
+                    plantQurDBHelper.Insert_result("SampleData",sharedPreferences.getLong("Item_id", (long) 0),ID_lots,jsonInString,jsonInString);
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("Num_Lots",Num_Lots);
                     resultIntent.putExtra("barcode",sampleResult.getBarCode());

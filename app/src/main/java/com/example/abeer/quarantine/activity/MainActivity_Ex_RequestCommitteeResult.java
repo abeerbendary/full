@@ -507,7 +507,9 @@ public class MainActivity_Ex_RequestCommitteeResult extends AppCompatActivity
                     checkupResultModel.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date()));
                     final String json = new Gson().toJson(checkupResultModel);
 
-                    plantQurDBHelper.Insert_result("CommitteeResult", Long.valueOf(Request_id), "Ischeck", sharedPreferences.getLong("Item_id", (long) 0), 0, json, json);
+                    plantQurDBHelper.Insert_result("CommitteeResult",sharedPreferences.getLong("Item_id", (long) 0), 0, json, json);
+                    plantQurDBHelper.UbdateConterForItemResult("Ischeck",sharedPreferences.getLong("Item_id", (long) 0),Long.valueOf(Request_id));
+
                     int count = Integer.parseInt(plantQurDBHelper.Get_Data_for_RequestCommittee_working("Total_process", Long.valueOf(Request_id)));
 //                    int count = plantQurDBHelper.update_counterResultForAdmin(context, ipadrass, "Ischeck", Long.valueOf(Request_id), sharedPreferences.getLong("Item_id", (long) 0), sharedPreferences.getLong("EmpId", (long) 0));
                     if (count == 0) {
@@ -560,6 +562,7 @@ public class MainActivity_Ex_RequestCommitteeResult extends AppCompatActivity
                     i.putExtra("LOTS_NUM", "" + sampleData_lOts.getLot_Number());
                     i.putExtra("Net_Weight", sampleData_lOts.getNet_Weight());
                     i.putExtra("Package_Count", sampleData_lOts.getPackage_Count());
+                    i.putExtra("type",sampleData_lOts.getPackage_Type_Name());
                     viewforbutton = view;
                     startActivityForResult(i, 1);
                 }
@@ -633,7 +636,9 @@ public class MainActivity_Ex_RequestCommitteeResult extends AppCompatActivity
 ////                    e.printStackTrace();
 ////                }
 ////                ////////////end code shared preference ////////////////////////////////////////////////////////////////
+
                 if (size == lengthsave) {
+                    plantQurDBHelper.UbdateConterForItemResult("Ischeck",sharedPreferences.getLong("Item_id", (long) 0),Long.valueOf(Request_id));
                     int count = Integer.parseInt(plantQurDBHelper.Get_Data_for_RequestCommittee_working("Total_process", Long.valueOf(Request_id)));
 //                    int count = plantQurDBHelper.update_counterResultForAdmin(context, ipadrass, "Ischeck", Long.valueOf(Request_id), sharedPreferences.getLong("Item_id", (long) 0), sharedPreferences.getLong("EmpId", (long) 0));
                     if (count == 0) {

@@ -279,8 +279,8 @@ public class MainActivity_SampleWithDraw extends AppCompatActivity
                     public_function.AlertDialog("برجاء تحديد نوع التحليل ", context, false);
                 } else {
                     final String json = new Gson().toJson(sampleResultModel);
-                    plantQurDBHelper.Insert_result("SampleData", Long.valueOf(Request_id), "Isanalysis", sharedPreferences.getLong("Item_id", (long) 0), 0, json, json);
-
+                    plantQurDBHelper.Insert_result("SampleData", sharedPreferences.getLong("Item_id", (long) 0), 0, json, json);
+                    plantQurDBHelper.UbdateConterForItemResult("Isanalysis",sharedPreferences.getLong("Item_id", (long) 0),Long.valueOf(Request_id));
                     barcod_cards.add(new Barcod_Card(num_Request, "0", sampleResult.getBarCode() + "0"));
                     Intent intent = new Intent(context, Generate_barcode.class);
                     intent.putExtra("barcode", (Serializable) barcod_cards);
@@ -393,6 +393,7 @@ public class MainActivity_SampleWithDraw extends AppCompatActivity
 //                }
                 ////////////end code shared preference ////////////////////////////////////////////////////////////////
                 if (size == lengthsave) {
+                    plantQurDBHelper.UbdateConterForItemResult("Isanalysis",sharedPreferences.getLong("Item_id", (long) 0),Long.valueOf(Request_id));
                     Intent intent = new Intent(context, Generate_barcode.class);
                     intent.putExtra("barcode", (Serializable) barcod_cards);
                     intent.putExtra("contextsample", "true");

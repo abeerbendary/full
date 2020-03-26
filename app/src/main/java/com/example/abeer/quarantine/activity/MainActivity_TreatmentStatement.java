@@ -340,6 +340,7 @@ public class MainActivity_TreatmentStatement extends AppCompatActivity
             public void OnClickSaveTreatment(View view, TreatmentResult TreatmentResult) {
 
                 if (size == lengthsave) {
+                    plantQurDBHelper.UbdateConterForItemResult("Istreatment",sharedPreferences.getLong("Item_id", (long) 0),Long.valueOf(Request_id));
                     int count = Integer.parseInt(plantQurDBHelper.Get_Data_for_RequestCommittee_working("Total_process", Long.valueOf(Request_id)));
                     if (count == 0) {
                         plantQurDBHelper.update_counterResultForAdmin_New(context, ipadrass, Long.parseLong(Request_id),sharedPreferences.getLong("EmpId", 0),true);
@@ -515,8 +516,10 @@ public class MainActivity_TreatmentStatement extends AppCompatActivity
                     treatmentResultModel = new Treatment_Result_Model(TreatmentResult);
                     treatmentResultModel.setIsLot(18);
                     final String json = new Gson().toJson(treatmentResultModel);
-                    plantQurDBHelper.Insert_result("TreatmentData", Long.valueOf(Request_id), "Istreatment", sharedPreferences.getLong("Item_id", (long) 0), 0, json, json);
-//                    int count = plantQurDBHelper.update_counterResultForAdmin(context, ipadrass, "Istreatment", Long.valueOf(Request_id), sharedPreferences.getLong("Item_id", (long) 0), sharedPreferences.getLong("EmpId", (long) 0));
+                    plantQurDBHelper.Insert_result("TreatmentData", sharedPreferences.getLong("Item_id", (long) 0), 0, json, json);
+                    plantQurDBHelper.UbdateConterForItemResult("Istreatment",sharedPreferences.getLong("Item_id", (long) 0),Long.valueOf(Request_id));
+
+//       int count = plantQurDBHelper.update_counterResultForAdmin(context, ipadrass, "Istreatment", Long.valueOf(Request_id), sharedPreferences.getLong("Item_id", (long) 0), sharedPreferences.getLong("EmpId", (long) 0));
                     int count = Integer.parseInt(plantQurDBHelper.Get_Data_for_RequestCommittee_working("Total_process", Long.valueOf(Request_id)));
                     if (count == 0) {
                         plantQurDBHelper.update_counterResultForAdmin_New(context, ipadrass, Long.parseLong(Request_id),sharedPreferences.getLong("EmpId", 0),true);

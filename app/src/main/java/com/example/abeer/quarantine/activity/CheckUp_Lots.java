@@ -75,9 +75,9 @@ public class CheckUp_Lots extends AppCompatActivity //implements LocationListene
     Location location;
     long ID_lots;
     String ipadrass;
-    double lat, longg;
     int Package_Count;
     double Net_Weight;
+    String type;
     SharedPreferences sharedPreferences;
     Checkup_Result_Model checkupResultModel;
     TextView num_Request;
@@ -99,6 +99,7 @@ public class CheckUp_Lots extends AppCompatActivity //implements LocationListene
         Net_Weight = intent.getDoubleExtra("Net_Weight",0);
         Num_Lots = intent.getStringExtra("LOTS_NUM");
         ID_lots =  intent.getLongExtra("ID",0);
+        type=intent.getStringExtra("type");
         Request_id = sharedPreferences.getString("checkRequest_Id", "");
         linear_Layout_Damaged = findViewById(R.id.damaged);
     }
@@ -110,6 +111,7 @@ public class CheckUp_Lots extends AppCompatActivity //implements LocationListene
         num_Request = findViewById(R.id.lotvalue);
         Lotsvalue = findViewById(R.id.Lotss_value);
         Lotsvalue.setText(Num_Lots);
+        ((TextView) findViewById(R.id.lottype)).setText(type);
         num_Request.setText(sharedPreferences.getString("num_Request", ""));
         EditText edit_num = findViewById(R.id.lotedit_num);
         final EditText edit_ten = findViewById(R.id.lotedit_ten);
@@ -324,7 +326,7 @@ public class CheckUp_Lots extends AppCompatActivity //implements LocationListene
                     checkupResultModel.setLatitude( location.getLatitude());
                     String jsonInString = gson.toJson(checkupResultModel);
                     PlantQurDBHelper plantQurDBHelper=new PlantQurDBHelper(context);
-                    plantQurDBHelper.Insert_result("CommitteeResult",Long.valueOf(Request_id),"Ischeck",sharedPreferences.getLong("Item_id", (long) 0),ID_lots,jsonInString,jsonInString);
+                    plantQurDBHelper.Insert_result("CommitteeResult",sharedPreferences.getLong("Item_id", (long) 0),ID_lots,jsonInString,jsonInString);
                     Intent resultIntent = new Intent();
                     setResult(Activity.RESULT_OK, resultIntent);
                     finish();

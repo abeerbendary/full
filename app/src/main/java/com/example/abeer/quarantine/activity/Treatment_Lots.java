@@ -274,7 +274,7 @@ public class Treatment_Lots extends AppCompatActivity  //implements LocationList
                     Treatment_Result_Model treatmentResultModel = new Treatment_Result_Model(TreatmentResult);
                     String jsonInString = gson.toJson(treatmentResultModel);
                     PlantQurDBHelper plantQurDBHelper=new PlantQurDBHelper(context);
-                    plantQurDBHelper.Insert_result("TreatmentData",Long.valueOf(Request_id),"Istreatment",sharedPreferences.getLong("Item_id", (long) 0),ID_lots,jsonInString,jsonInString);
+                    plantQurDBHelper.Insert_result("TreatmentData",sharedPreferences.getLong("Item_id", (long) 0),ID_lots,jsonInString,jsonInString);
                     Intent resultIntent = new Intent();
                     setResult(Activity.RESULT_OK, resultIntent);
                     finish();

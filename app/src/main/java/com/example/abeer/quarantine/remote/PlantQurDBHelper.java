@@ -326,12 +326,13 @@ public class PlantQurDBHelper {
         database.update("FarmAndStation", values, "RequestCommittee_ID=" + ID_RequestCommittee, null);
         database.close();
     }
-    public String GetConfirmDataFarmStation(long ID_RequestCommittee ) {
-        Cursor cursor = engine.getReadableDatabase().rawQuery("select JsonConfirm from FarmAndStation where RequestCommittee_ID="+ID_RequestCommittee, null);
+
+    public String GetConfirmDataFarmStation(long ID_RequestCommittee) {
+        Cursor cursor = engine.getReadableDatabase().rawQuery("select JsonConfirm from FarmAndStation where RequestCommittee_ID=" + ID_RequestCommittee, null);
         int count = cursor.getCount();
         if (count > 0) {
             cursor.moveToNext();
-            String  JsonConfirm = cursor.getString(0);
+            String JsonConfirm = cursor.getString(0);
             return JsonConfirm;
         }
         return "";
@@ -637,7 +638,7 @@ public class PlantQurDBHelper {
         database.close();
     }
 
-    public void Insert_result(String TableName, long checkRequestId, String CountColumnName, long Items_ID, long LotID, String Result, String JsonConfirm) {
+    public void Insert_result(String TableName, long Items_ID, long LotID, String Result, String JsonConfirm) {
         database = engine.getWritableDatabase();
         values = new ContentValues();
         values.put("Items_ID", Items_ID);
@@ -645,6 +646,51 @@ public class PlantQurDBHelper {
         values.put("JsonResult", Result);
         values.put("JsonConfirm", JsonConfirm);
         database.insert(TableName, null, values);
+//        // ubdate count for check
+//        HashMap<String, Integer> detailscounter = new HashMap<>();
+//        detailscounter = Get_Data_For_Items(Items_ID);
+//        int counter = 0;
+//        if (CountColumnName.equals("Ischeck")) {
+//            counter = detailscounter.get("Ischeck").intValue() - 1 + detailscounter.get("Isanalysis").intValue() + detailscounter.get("Istreatment").intValue();
+//            values = new ContentValues();
+//            if (counter == 0) {
+//                values.put("Ischeck", detailscounter.get("Ischeck").intValue() - 1);
+//                values.put("Has_Result", 1);
+//            } else {
+//                values.put("Ischeck", detailscounter.get("Ischeck").intValue() - 1);
+//            }
+//            database.update("Items", values, "_id=" + Items_ID, null);
+//        } else if (CountColumnName.equals("Isanalysis")) {
+//            counter = detailscounter.get("Isanalysis").intValue() - 1 + detailscounter.get("Ischeck").intValue() + detailscounter.get("Istreatment").intValue();
+//            values = new ContentValues();
+//            if (counter == 0) {
+//                values.put("Isanalysis", detailscounter.get("Isanalysis").intValue() - 1);
+//                values.put("Has_Result", 1);
+//            } else {
+//                values.put("Isanalysis", detailscounter.get("Isanalysis").intValue() - 1);
+//            }
+//            database.update("Items", values, "_id=" + Items_ID, null);
+//        } else {
+//            counter = detailscounter.get("Istreatment").intValue() - 1 + detailscounter.get("Isanalysis").intValue() + detailscounter.get("Ischeck").intValue();
+//            values = new ContentValues();
+//            if (counter == 0) {
+//                values.put("Istreatment", detailscounter.get("Istreatment").intValue() - 1);
+//                values.put("Has_Result", 1);
+//            } else {
+//                values.put("Istreatment", detailscounter.get("Istreatment").intValue() - 1);
+//            }
+//            database.update("Items", values, "_id=" + Items_ID, null);
+//        }
+//
+//        // ubdate total process
+//        counter = Integer.parseInt(Get_Data_for_RequestCommittee_working("Total_process", checkRequestId));
+//        values = new ContentValues();
+//        values.put("Total_process", counter - 1);
+//        database.update("RequestCommittee", values, "_id=" + checkRequestId, null);
+    }
+
+    public void UbdateConterForItemResult(String CountColumnName, long Items_ID, long checkRequestId) {
+        database = engine.getWritableDatabase();
         // ubdate count for check
         HashMap<String, Integer> detailscounter = new HashMap<>();
         detailscounter = Get_Data_For_Items(Items_ID);

@@ -55,7 +55,6 @@
             android:textColor="#009540"
             android:textSize="50sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -681,8 +680,8 @@
 
         <LinearLayout
             android:id="@+id/Linearconstrans"
-            android:layout_width="518dp"
-            android:layout_height="600dp"
+            android:layout_width="620dp"
+            android:layout_height="580dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
@@ -722,8 +721,8 @@
 
         <LinearLayout
             android:id="@+id/Linearlotss"
-            android:layout_width="518dp"
-            android:layout_height="600dp"
+            android:layout_width="580dp"
+            android:layout_height="580dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
