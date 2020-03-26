@@ -95,7 +95,8 @@ public class LogIn extends AppCompatActivity {
                     }
                     ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-                    if (mWifi.isConnected()) {
+                    NetworkInfo mobileData = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+                    if (mWifi.isConnected()||mobileData.isConnected()) {
                         LOginOnline(jsonObject);
                     }else {
                         LOginOffline(requestLogin);

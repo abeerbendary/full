@@ -682,7 +682,7 @@
         <LinearLayout
             android:id="@+id/Linearconstrans"
             android:layout_width="518dp"
-            android:layout_height="400dp"
+            android:layout_height="600dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
@@ -695,7 +695,6 @@
             android:orientation="vertical"
             android:padding="20dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
@@ -724,7 +723,7 @@
         <LinearLayout
             android:id="@+id/Linearlotss"
             android:layout_width="518dp"
-            android:layout_height="400dp"
+            android:layout_height="600dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
@@ -737,7 +736,6 @@
             android:orientation="vertical"
             android:padding="20dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout13"

@@ -3,8 +3,6 @@ package com.example.abeer.quarantine.viewmodel.confirm;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.example.abeer.quarantine.viewmodel.treatmentStatement.TreatmentResult;
-
 public class TreatmentDataDetail extends BaseObservable {
     public   long Ex_Request_Item_Id;
     public  long Ex_Request_LotData_ID;
@@ -22,27 +20,10 @@ public class TreatmentDataDetail extends BaseObservable {
     public  String TreatmentMat_Amount;
     public  String Note;
     public  String Lot_Number;
-    public  long TreatmentData_Id;
+    public  long  TreatmentData_Id;
 
 
-    public TreatmentDataDetail(TreatmentResult treatmentResult) {
-//        Ex_Request_Item_Id = ex_Request_Item_Id;
-        Ex_Request_LotData_ID = treatmentResult.getLot_ID();
-//        TreatmentType_Name = treatmentType_Name;
-//        Company_Name = company_Name;
-//        TreatmentMaterial_Name = treatmentMaterial_Name;
-//        TreatmentMethods_Name = treatmentResult.get;
-        Temperature = String.valueOf(treatmentResult.getTemperature());
-        Exposure_Day = String.valueOf(treatmentResult.getExposure_Day());
-        Exposure_Hour = String.valueOf(treatmentResult.getExposure_Hour());
-        Exposure_Minute = String.valueOf(treatmentResult.getExposure_Minute());
-        TheDose = String.valueOf(treatmentResult.getDosage());
-        Size = String.valueOf(treatmentResult.getResala_size());
-        TreatmentMat_Amount = String.valueOf(treatmentResult.getQuantity_material());
-        Note = treatmentResult.getComment();
-//        Lot_Number = lot_Number;
-//        TreatmentData_Id = tr;
-    }
+ public TreatmentDataDetail(){ }
 
     public TreatmentDataDetail(TreatmentDataDetail f) {
         this.Ex_Request_Item_Id= f.Ex_Request_Item_Id;

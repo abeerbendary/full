@@ -556,7 +556,6 @@ public class MainActivity_Ex_RequestCommitteeResult extends AppCompatActivity
                 @Override
                 public void button_click(View view, ItemLotatData sampleData_lOts) {
                     Intent i = new Intent(context, CheckUp_Lots.class);
-                    startActivity(i);
                     i.putExtra("ID", sampleData_lOts.Lot_ID);
                     i.putExtra("LOTS_NUM", "" + sampleData_lOts.getLot_Number());
                     i.putExtra("Net_Weight", sampleData_lOts.getNet_Weight());
@@ -566,8 +565,6 @@ public class MainActivity_Ex_RequestCommitteeResult extends AppCompatActivity
                 }
             }
             );
-
-
         }
         activityMainExRequestCommitteeResultBinding.contentrequestCommitteeResult.setMyAdapter(dd);
         activityMainExRequestCommitteeResultBinding.contentrequestCommitteeResult.resycler.setLayoutManager(new LinearLayoutManager(context));

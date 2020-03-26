@@ -3,9 +3,6 @@ package com.example.abeer.quarantine.viewmodel.confirm;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.example.abeer.quarantine.model.Checkup_Result_Model;
-import com.example.abeer.quarantine.viewmodel.ex_RequestCommitteeResult.Checkup_Result;
-
 
 public class CommiteeDataDetail extends BaseObservable {
     public String   Infection_Type;
@@ -21,25 +18,6 @@ public class CommiteeDataDetail extends BaseObservable {
     public  String Lot_Number;
     public  String Notes;
     public  long CommitteeResult_Id;
-
-    public CommiteeDataDetail(Checkup_Result checkup_result) {
-//        Infection_Type;
-//            CommitteeResultType_ID;
-//           Name_Ar;
-//             Ex_Request_Item_Id;
-//            Ex_RequestLotData_ID;
-//            Infection_Name;
-//           Result_injury_Name;
-//           Lot_Number;
-//           CommitteeResult_Id;
-      Weight=checkup_result.getWeight();
-          QuantitySize= String.valueOf(checkup_result.getCount());
-       Date=checkup_result.getCheckup();
-        Notes=checkup_result.getComment();
-
-
-    }
-
     @Bindable
     public long getCommitteeResult_Id() {
         return CommitteeResult_Id;
