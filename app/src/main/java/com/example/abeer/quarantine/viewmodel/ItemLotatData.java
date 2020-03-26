@@ -5,6 +5,9 @@ import android.databinding.Bindable;
 import android.databinding.adapters.Converters;
 
 import com.example.abeer.quarantine.BR;
+import com.example.abeer.quarantine.viewmodel.confirm.CommiteeDataDetail;
+import com.example.abeer.quarantine.viewmodel.confirm.SampleDataDetail;
+import com.example.abeer.quarantine.viewmodel.confirm.TreatmentDataDetail;
 
 public class ItemLotatData  extends BaseObservable {
     public  int  Lot_Number;
@@ -44,6 +47,20 @@ public class ItemLotatData  extends BaseObservable {
         this.Package_Type_Name = ItemLotatData.Package_Type_Name;
         this.tem_number = ItemLotatData.tem_number;
         this.Lot_ID=ItemLotatData.Lot_ID;
+    }
+///////abeer 24/3/2020 ///
+    public ItemLotatData(CommiteeDataDetail commiteeDataDetail) {
+        Lot_Number = Integer.parseInt(commiteeDataDetail.getLot_Number());
+        Lot_ID = commiteeDataDetail.getEx_RequestLotData_ID();
+    }
+    public ItemLotatData(SampleDataDetail sampleDataDetail) {
+        Lot_Number = Integer.parseInt(sampleDataDetail.getLot_Number());
+        Lot_ID = sampleDataDetail.Ex_Request_LotData_ID;
+    }
+
+    public ItemLotatData(TreatmentDataDetail treatmentDataDetail) {
+        Lot_Number = Integer.parseInt(treatmentDataDetail.getLot_Number());
+        Lot_ID = treatmentDataDetail.Ex_Request_LotData_ID;
     }
     ////////////////
     public ItemLotatData(int lot_Number,int Lot_ID, int package_Count, double net_Weight, double gross_Weight, String isAccepted, String package_Material_Name, String package_Type_Name, String tem_number) {

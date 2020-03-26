@@ -47,7 +47,13 @@ public class PlantQurDBHelper {
         engine = new Engine(context);
 //        database.execSQL(ENCODING_SETTING);
     }
-
+    public void InsertConfirmResult(String TableName, long Items_ID,String ResultCofirm) {
+        database = engine.getWritableDatabase();
+        values = new ContentValues();
+        values.put("JsonConfirmResult", ResultCofirm);
+        database.update(TableName, values, "Items_ID=" + Items_ID,null);
+        database.close();
+    }
     public boolean Insert_CommitteeRequestEmployee(Context context, ExportCheckRequest exportCheckRequest, ArrayList<Emp_Committe> emp_committeArrayList) {
         //used it to insert committee request and employee and employee_requestcommittee
         boolean Result;

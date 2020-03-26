@@ -37,5 +37,6 @@ public class ApiCall {
     public static String UrlStationResult  ="/api/stationCommittee";
     public static String UrlStationResultconfirm="/api/stationCommittee?Is_Confirm=true";
     public static String UrlStationDataconfirm="/api/stationCommittee?StationCommitte_Id=";
+    public  static   String uri="/api/CommitteeResult?Ex_Request_Item_Id=";
 }
 

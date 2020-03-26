@@ -211,7 +211,8 @@ public class MainActivity_Farm extends AppCompatActivity
             Committee_ID = String.valueOf(sharedPreferences.getLong("Committee_ID", 0));
             ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            if (mWifi.isConnected()) {
+            NetworkInfo mobileData = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            if (mWifi.isConnected()||mobileData.isConnected()) {
                 dataManger.SendVollyRequestJsonObjectGet(this, Request.Method.GET, ipadrass + ApiCall.UrlFarmDataconfirm + Committee_ID + "&IsResult=true", new IDataValue() {
                     @Override
                     public void Success(Object response) throws JSONException {

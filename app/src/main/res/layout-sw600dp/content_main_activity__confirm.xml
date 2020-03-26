@@ -1,1225 +1,1578 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
+
         <variable
-            name="detailItemDataList"
-            type="com.example.abeer.quarantine.viewmodel.ListItemDataDetail">
+            name="ccom"
+            type="com.example.abeer.quarantine.viewmodel.confirm.CommiteeDataDetail">
         </variable>
+        <variable
+            name="sam"
+            type="com.example.abeer.quarantine.viewmodel.confirm.SampleDataDetail">
+        </variable>
+        <variable
+            name="ttreat"
+            type="com.example.abeer.quarantine.viewmodel.confirm.TreatmentDataDetail">
+        </variable>
+
+        <variable
+            name="myAdapter"
+            type="com.example.abeer.quarantine.adapter.MyAdapterforRecycler" />
+        <variable
+            name="IpresenterConfirmEx"
+            type="com.example.abeer.quarantine.presenter.IpresenterConfirm" />
+        <variable
+            name="IpresenterConfirmSam"
+            type="com.example.abeer.quarantine.presenter.IpresenterConfirm" />
+        <variable
+            name="IpresenterConfirmTreat"
+            type="com.example.abeer.quarantine.presenter.IpresenterConfirm" />
+        <variable
+            name="CommiteeDataDetaill"
+            type="com.example.abeer.quarantine.viewmodel.confirm.CommiteeDataDetail" />
+        <variable
+            name="ConfirmResultEX"
+            type="com.example.abeer.quarantine.viewmodel.confirm.ConfirmResult"/>
+        <variable
+            name="ConfirmResultSAm"
+            type="com.example.abeer.quarantine.viewmodel.confirm.ConfirmResult"/>
+        <variable
+            name="ConfirmResultTrea"
+            type="com.example.abeer.quarantine.viewmodel.confirm.ConfirmResult"/>
     </data>
 
-<android.support.constraint.ConstraintLayout
+    <android.support.constraint.ConstraintLayout
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activity.MainActivity_Confirm"
-    tools:showIn="@layout/app_bar_main_activity__listofchipment"
-    android:background="@drawable/h2">
-
-    <TextView
-        android:id="@+id/title_radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="147dp"
-        android:fontFamily="@font/droid"
-        android:text=" تأكيد النتيجة "
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        android:textColor="#009540"
-        android:textSize="40sp"
-        android:textStyle="bold"/>
-
-    <Button
-        android:id="@+id/shownavbar"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/ic_menu_black_24dp"
-        android:layoutDirection="ltr"
-        android:onClick="shownav"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
-
-    <!--<TextView-->
-        <!--android:id="@+id/title_radio_group"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:fontFamily="@font/droid"-->
-        <!--android:gravity="center"-->
-        <!--android:Textsss=" تأكيد النتيجة"-->
-        <!--android:textColor="#009540"-->
-        <!--android:textSize="40sp"-->
-        <!--android:textStyle="bold"-->
-        <!--app:layout_constraintBottom_toTopOf="@+id/num_request"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.501"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--tools:ignore="MissingConstraints" />-->
-
-    <LinearLayout
-        android:id="@+id/num_request"
-        android:layout_width="wrap_content"
-        android:layout_height="66dp"
-        android:layout_gravity="center"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772"
-        app:layout_goneMarginTop="100dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".activity.MainActivityconfirmdetails"
+        tools:showIn="@layout/app_bar_main_activity__listofchipment"
+        android:background="@drawable/h2">
 
         <TextView
-            android:id="@+id/title_request"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/droid"
-            android:text="رقم الطلب: "
-            android:textColor="#1f90a5"
-            android:textStyle="bold"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/value_request"
+            android:id="@+id/title_radio_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="147dp"
             android:fontFamily="@font/droid"
-            android:gravity="center"
-            android:inputType="numberSigned"
-            android:layoutDirection="rtl"
-            android:text=""
-            android:textColor="#1f90a5"
-            android:textDirection="rtl"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout14"
-        android:layout_width="650dp"
-        android:layout_height="67dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
-
-        <Button
-            android:id="@+id/Btn_check3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btnshadow"
-            android:fontFamily="@font/droid"
-            android:onClick="Exrequest"
-            android:paddingLeft="20dp"
-            android:layout_marginRight="10dp"
-            android:paddingRight="20dp"
-            android:text=" فحص الشحنه"
-            android:textColor="#fff"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-
-        <Button
-            android:id="@+id/Btn_check2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/btnshadow"
-            android:fontFamily="@font/droid"
-            android:onClick="sample"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="سحب العينة"
-            android:textColor="#fff"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/Btn_check1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/btnshadow"
-            android:fontFamily="@font/droid"
-            android:onClick="treatment"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="معالجة الشحنة"
-            android:textColor="#fff"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <ScrollView
-        android:id="@+id/scrollView_Examination_full1"
-        android:layout_width="wrap_content"
-        android:layout_height="549dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="236dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:fillViewport="true"
-        android:gravity="center"
-        android:layoutDirection="rtl"
-        android:orientation="vertical"
-        android:paddingBottom="20dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup_Examination"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
-            android:id="@+id/linear_Layout_Examination_full1"
-            android:layout_width="600dp"
-            android:layout_height="717dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layoutDirection="rtl"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text=" تأكيد النتيجة "
+            app:layout_constraintBottom_toTopOf="@+id/scrollView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.859">
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layoutDirection="rtl"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/title_num"
-                    android:layout_width="180dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="العدد : "
-                    android:textColor="#1f90a5"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    tools:textSize="30sp" />
-
-                <TextView
-                    android:id="@+id/edit_num"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:inputType="numberSigned"
-                    android:paddingRight="10dp"
-                    android:text="123"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layoutDirection="rtl"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:id="@+id/title_weight"
-                    android:layout_width="180dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:layoutDirection="rtl"
-                    android:text="الوزن : "
-                    android:textColor="#1f90a5"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    tools:textSize="30sp" />
-
-                <TextView
-                    android:id="@+id/edit_weight"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:inputType="numberSigned"
-                    android:layoutDirection="rtl"
-                    android:paddingRight="10dp"
-                    android:text="456"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/title_result1"
-                    android:layout_width="180dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="النتيجة : "
-                    android:textColor="#1f90a5"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    tools:textSize="30sp" />
-
-                <TextView
-                    android:id="@+id/spinner_result"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:paddingRight="10dp"
-                    android:text="قبول جزئي"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/damaged"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="visible">
-
-                <TextView
-                    android:id="@+id/title_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="71dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:fontFamily="@font/droid"
-                    android:gravity="center"
-                    android:text=" نوع الإصابة    "
-                    android:textColor="#aaa"
-                    android:textSize="40sp"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="245dp"
-                    tools:layout_editor_absoluteY="16dp"
-                    tools:textSize="30sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/title_Kingdom"
-                        android:layout_width="180dp"
-                        android:layout_height="50dp"
-                        android:fontFamily="@font/droid"
-                        android:text="المملكة "
-                        android:textColor="#1f90a5"
-                        android:textSize="30sp"
-                        android:textStyle="bold"
-                        tools:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/Spinner_Kingdom"
-                        android:layout_width="350dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/droid"
-                        android:paddingRight="10dp"
-                        android:spinnerMode="dropdown"
-                        android:text="مملكة1"
-                        android:textColor="#009540"
-                        android:textSize="25sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/title_phy"
-                        android:layout_width="180dp"
-                        android:layout_height="50dp"
-                        android:fontFamily="@font/droid"
-                        android:text="الشعبة : "
-                        android:textColor="#1f90a5"
-                        android:textSize="30sp"
-                        android:textStyle="bold"
-                        tools:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/Spinner_Phylum"
-                        android:layout_width="350dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/droid"
-                        android:paddingRight="10dp"
-                        android:spinnerMode="dropdown"
-                        android:text="النباتات"
-                        android:textColor="#009540"
-                        android:textSize="25sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/title_order"
-                        android:layout_width="180dp"
-                        android:layout_height="50dp"
-                        android:fontFamily="@font/droid"
-                        android:text="الرتب : "
-                        android:textColor="#1f90a5"
-                        android:textSize="30sp"
-                        android:textStyle="bold"
-                        tools:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/Spinner_Order"
-                        android:layout_width="350dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/droid"
-                        android:paddingRight="10dp"
-                        android:spinnerMode="dropdown"
-                        android:text="رتبة1"
-                        android:textColor="#009540"
-                        android:textSize="25sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/title_family"
-                        android:layout_width="180dp"
-                        android:layout_height="50dp"
-                        android:fontFamily="@font/droid"
-                        android:text="العائلة :  "
-                        android:textColor="#1f90a5"
-                        android:textSize="30sp"
-                        android:textStyle="bold"
-                        tools:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/Spinner_Family"
-                        android:layout_width="350dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/droid"
-                        android:paddingRight="10dp"
-                        android:spinnerMode="dropdown"
-                        android:text="النباتات"
-                        android:textColor="#009540"
-                        android:textSize="25sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/title_result"
-                        android:layout_width="180dp"
-                        android:layout_height="50dp"
-                        android:fontFamily="@font/droid"
-                        android:text="نتيجة الإصابة : "
-                        android:textColor="#1f90a5"
-                        android:textSize="30sp"
-                        android:textStyle="bold"
-                        tools:textSize="30sp" />
-
-                    <TextView
-                        android:id="@+id/spinner"
-                        android:layout_width="350dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/droid"
-                        android:paddingRight="10dp"
-                        android:spinnerMode="dropdown"
-                        android:text="إصابه1"
-                        android:textColor="#009540"
-                        android:textSize="25sp" />
-                </LinearLayout>
-            </LinearLayout>
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints"
+            android:textColor="#009540"
+            android:textSize="40sp"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/shownavbar"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/ic_menu_black_24dp"
+            android:layoutDirection="ltr"
+            android:onClick="shownav"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.953"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.166" />
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+        <LinearLayout
+            android:id="@+id/num_request"
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.514"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.772"
+            app:layout_goneMarginTop="100dp">
 
             <TextView
-                android:id="@+id/editText22"
-                android:layout_width="530dp"
-                android:layout_height="88dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/rectshadow"
-                android:ems="10"
+                android:id="@+id/title_request"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/droid"
-                android:inputType="textMultiLine"
-                android:paddingRight="10dp"
-                android:text="تم اضافة تعليقات عن الشحنة"
-                android:textColor="#009540"
-                android:textColorHint="#1f90a5"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="16dp" />
-        </LinearLayout>
-    </ScrollView>
+                android:text="رقم الطلب: "
+                android:textColor="#1f90a5"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-    <ScrollView
-        android:id="@+id/scrollView_Sample_full"
-        android:layout_width="wrap_content"
-        android:layout_height="549dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="236dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:fillViewport="true"
-        android:gravity="center"
-        android:layoutDirection="rtl"
-        android:orientation="vertical"
-        android:paddingBottom="20dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup_Examination"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+            <TextView
+                android:id="@+id/value_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/droid"
+                android:gravity="center"
+                android:inputType="numberSigned"
+                android:layoutDirection="rtl"
+                android:text=""
+                android:textColor="#1f90a5"
+                android:textDirection="rtl"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            tools:ignore="MissingConstraints" />
 
         <LinearLayout
-            android:id="@+id/linear_Layout_Examination_full"
-            android:layout_width="600dp"
-            android:layout_height="717dp"
-            android:layout_marginLeft="70dp"
-            android:layout_weight="1"
+            android:id="@+id/linearLayout14"
+            android:layout_width="650dp"
+            android:layout_height="83dp"
+            android:layout_marginTop="136dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:layoutDirection="rtl"
-            android:orientation="vertical"
-            android:visibility="visible"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.859">
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/analysis_type_title"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="نوع التحليل :  "
-                    android:textColor="#1f90a5"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/Spinner_analysis_type"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:paddingRight="10dp"
-                    android:spinnerMode="dropdown"
-                    android:text="تحليل1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/laboratory_title"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="المعمل : "
-                    android:textColor="#1f90a5"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/Spinner_laboratory"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:paddingRight="10dp"
-                    android:spinnerMode="dropdown"
-                    android:text="معمل1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layoutDirection="rtl"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/title_place"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="مكان السحب : "
-                    android:textColor="#1f90a5"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/edit_place"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:inputType="text"
-                    android:paddingRight="10dp"
-                    android:text="مكان 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layoutDirection="rtl"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/title_SampleSize"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="حجم العينة : "
-                    android:textColor="#1f90a5"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/edit_SampleSize"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:inputType="numberSigned"
-                    android:paddingRight="10dp"
-                    android:text="حجم 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layoutDirection="rtl"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/title_SampleUnderSize"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="حجم تحت العينة "
-                    android:textColor="#1f90a5"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/edit_SampleUnderSize"
-                    android:layout_width="350dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:inputType="numberSigned"
-                    android:paddingRight="10dp"
-                    android:text="حجم حجم"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/editText5"
-                android:layout_width="530dp"
-                android:layout_height="88dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/rectshadow"
-                android:ems="10"
-                android:fontFamily="@font/droid"
-                android:inputType="textMultiLine"
-                android:paddingRight="10dp"
-                android:text="التعليقات المضافة"
-                android:textColor="#009540"
-                android:textColorHint="#1f90a5"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="16dp"
-                tools:textSizeHint="25sp" />
-
-        </LinearLayout>
-    </ScrollView>
-        /////////////////
-    <ScrollView
-        android:id="@+id/scrollView_Treatment_full"
-        android:layout_width="wrap_content"
-        android:layout_height="549dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="236dp"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:fillViewport="true"
-        android:gravity="center"
-        android:layoutDirection="rtl"
-        android:orientation="vertical"
-        android:paddingBottom="20dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup_Examination"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        >
-
-        <LinearLayout
-            android:id="@+id/linear_Layout_Treatment_full"
-            android:layout_width="wrap_content"
-            android:layout_height="730dp"
-            android:layout_marginLeft="70dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layoutDirection="rtl"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/btns_Treatment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/num_treatment"
+            app:layout_constraintVertical_bias="0.0"
             tools:ignore="MissingConstraints">
 
-
-            <LinearLayout
+            <Button
+                android:id="@+id/Btn_check3_examination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/treatment_type_title"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="نوع المعالجة: "
-                    android:textColor="#1f90a5"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/spinner_treatment_Type"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:paddingRight="10dp"
-                    android:text="معالجة1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/treatment_company_title"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="شركة المعالجة: "
-                    android:textColor="#1f90a5"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/spinner_treatment_company"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:paddingRight="10dp"
-                    android:spinnerMode="dropdown"
-                    android:text="شركة 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="560dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/treatment_title"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="مكان المعالجة:"
-                    android:textColor="#1f90a5"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/treatment_place1"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:paddingRight="10dp"
-                    android:spinnerMode="dropdown"
-                    android:text="مكان 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/treatment_method_title"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="طرق المعالجة: "
-                    android:textColor="#1f90a5"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/spinner_treatment_way"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:paddingRight="10dp"
-                    android:spinnerMode="dropdown"
-                    android:text="طريقه 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/title_shipment_size"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="حجم الرسالة: "
-                    android:textColor="#1f90a5"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/spinner_treatment_message"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:paddingRight="10dp"
-                    android:spinnerMode="dropdown"
-                    android:text="رسالة 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/title_treatment_material"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="مادةالمعالجة: "
-                    android:textColor="#1f90a5"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/spinner_treatment"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:paddingRight="10dp"
-                    android:spinnerMode="dropdown"
-                    android:text="مادة 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/title_quantity_material"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="كميةالمادةمستخدمة: "
-                    android:textColor="#1f90a5"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/quantity_material"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:inputType="numberSigned"
-                    android:paddingRight="10dp"
-                    android:text="كمية 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/Dosage_title"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="الجرعة: "
-                    android:textColor="#1f90a5"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/Dosage"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:inputType="numberSigned"
-                    android:paddingRight="10dp"
-                    android:text="جرعة 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/Duration_of_exposure_title"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="مدةالتعرض:"
-                    android:textColor="#1f90a5"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/Duration_of_exposure"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:inputType="numberSigned"
-                    android:paddingRight="10dp"
-                    android:text="مادة 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/temperature_title"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:fontFamily="@font/droid"
-                    android:text="درجة الحرارة:"
-                    android:textColor="#1f90a5"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/temperature"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/droid"
-                    android:inputType="numberSigned"
-                    android:paddingRight="10dp"
-                    android:text="درجة 1"
-                    android:textColor="#009540"
-                    android:textSize="25sp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/editText3"
-                android:layout_width="530dp"
-                android:layout_height="88dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/rectshadow"
-                android:ems="10"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btnshadow"
                 android:fontFamily="@font/droid"
-                android:inputType="textMultiLine"
-                android:paddingRight="10dp"
-                android:text="التعليقات المضافة"
-                android:textColor="#009540"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="16dp" />
+                android:onClick="buttonclick"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text=" فحص الشحنه"
+                android:textColor="#fff"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:id="@+id/Btn_check2_withdraw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btnshadow"
+                android:fontFamily="@font/droid"
+                android:onClick="buttonclick"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="سحب العينة"
+                android:textColor="#fff"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/Btn_check1_treatment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btnshadow"
+                android:fontFamily="@font/droid"
+                android:onClick="buttonclick"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="معالجة الشحنة"
+                android:textColor="#fff"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
-    </ScrollView>
-
-
-    <RadioGroup
-        android:id="@+id/radioGroup_Examination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="750dp"
-        android:layout_marginBottom="8dp"
-        android:layoutDirection="rtl"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints">
-
-        <RadioButton
-            android:id="@+id/radio_Examination_full"
+        <ScrollView
+            android:id="@+id/scrollView_Examination_full1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:buttonTint="#000"
-            android:fontFamily="@font/droid"
+            android:layout_height="800dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="236dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:animateLayoutChanges="true"
+            android:visibility="gone"
             android:layoutDirection="rtl"
-            android:text="أوافق"
-            android:textColor="#cd322e"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+            <LinearLayout
+                android:id="@+id/linear_Layout_Examination_full1"
+                android:layout_width="600dp"
+                android:layout_height="717dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.859">
 
-        <RadioButton
-            android:id="@+id/radio_Examination_part"
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_num"
+                        android:layout_width="180dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="العدد : "
+                        android:textColor="#1f90a5"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        tools:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/edit_num"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@.00000.font/droid"
+                        android:inputType="numberSigned"
+                        android:paddingRight="10dp"
+                        android:text="@{``+ccom.QuantitySize}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/title_weight"
+                        android:layout_width="180dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:layoutDirection="rtl"
+                        android:text="الوزن : "
+                        android:textColor="#1f90a5"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        tools:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/edit_weight"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="numberSigned"
+                        android:layoutDirection="rtl"
+                        android:paddingRight="10dp"
+                        android:text="@{``+ccom.Weight}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_result1"
+                        android:layout_width="180dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="النتيجة : "
+                        android:textColor="#1f90a5"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        tools:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/spinner_result"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:paddingRight="10dp"
+                        android:text="@{ccom.Name_Ar}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/damaged"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/title_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="71dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:fontFamily="@font/droid"
+                        android:gravity="center"
+                        android:text=" نوع الإصابة    "
+                        android:textColor="#aaa"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="245dp"
+                        tools:layout_editor_absoluteY="16dp"
+                        tools:textSize="30sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/title_Kingdom"
+                            android:layout_width="180dp"
+                            android:layout_height="50dp"
+                            android:fontFamily="@font/droid"
+                            android:text="المملكة "
+                            android:textColor="#1f90a5"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            tools:textSize="30sp" />
+
+                        <TextView
+                            android:id="@+id/Spinner_Kingdom"
+                            android:layout_width="350dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/droid"
+                            android:paddingRight="10dp"
+                            android:spinnerMode="dropdown"
+                            android:text="@{ccom.Infection_Type}"
+                            android:textColor="#009540"
+                            android:textSize="25sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/title_phy"
+                            android:layout_width="180dp"
+                            android:layout_height="50dp"
+                            android:fontFamily="@font/droid"
+                            android:text="الشعبة : "
+                            android:textColor="#1f90a5"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            tools:textSize="30sp" />
+
+                        <TextView
+                            android:id="@+id/Spinner_Phylum"
+                            android:layout_width="350dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/droid"
+                            android:paddingRight="10dp"
+                            android:spinnerMode="dropdown"
+                            android:text="@{ccom.Infection_Name}"
+                            android:textColor="#009540"
+                            android:textSize="25sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/title_order"
+                            android:layout_width="180dp"
+                            android:layout_height="50dp"
+                            android:fontFamily="@font/droid"
+                            android:text="الرتب : "
+                            android:textColor="#1f90a5"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            tools:textSize="30sp" />
+
+                        <TextView
+                            android:id="@+id/Spinner_Order"
+                            android:layout_width="350dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/droid"
+                            android:paddingRight="10dp"
+                            android:spinnerMode="dropdown"
+                            android:text="@{ccom.Result_injury_Name}"
+                            android:textColor="#009540"
+                            android:textSize="25sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/title_family"
+                            android:layout_width="180dp"
+                            android:layout_height="50dp"
+                            android:fontFamily="@font/droid"
+                            android:text="العائلة :  "
+                            android:textColor="#1f90a5"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            tools:textSize="30sp" />
+
+                        <TextView
+                            android:id="@+id/Spinner_Family"
+                            android:layout_width="350dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/droid"
+                            android:paddingRight="10dp"
+                            android:spinnerMode="dropdown"
+                            android:text="النباتات"
+                            android:textColor="#009540"
+                            android:textSize="25sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/title_result"
+                            android:layout_width="180dp"
+                            android:layout_height="50dp"
+                            android:fontFamily="@font/droid"
+                            android:text="نتيجة الإصابة : "
+                            android:textColor="#1f90a5"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            tools:textSize="30sp" />
+
+                        <TextView
+                            android:id="@+id/spinner"
+                            android:layout_width="350dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/droid"
+                            android:paddingRight="10dp"
+                            android:spinnerMode="dropdown"
+                            android:text="@{ccom.Result_injury_Name}"
+                            android:textColor="#009540"
+                            android:textSize="25sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/editTextr"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:fontFamily="@font/droid"
+                        android:textColor="#1f90a5"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:text="التعليقات المضافة" />
+
+                    <TextView
+                        android:id="@+id/addednotesr"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="numberSigned"
+                        android:paddingRight="10dp"
+                        android:text="@{ccom.Notes}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_ex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/editText4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:ignore="MissingConstraints">
+
+                    <RadioButton
+                        android:id="@+id/radio_Examination_yesex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="#000"
+                        android:fontFamily="@font/droid"
+                        android:layoutDirection="rtl"
+                        android:text="أوافق"
+                        android:onClick="onRadioButtonClics"
+                        android:textColor="#cd322e"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/radio_Examination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="60dp"
+                        android:layout_weight="1"
+                        android:buttonTint="#000"
+                        android:fontFamily="@font/droid"
+                        android:layoutDirection="rtl"
+                        android:text="لا أوافق"
+                        android:onClick="onRadioButtonClics"
+                        android:textColor="#cd322e"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </RadioGroup>
+                <EditText
+                    android:id="@+id/editText4noteexa"
+                    android:layout_width="530dp"
+                    android:layout_height="88dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rectshadow"
+                    android:ems="10"
+                    android:fontFamily="@font/droid"
+                    android:hint="إضافة تعليق"
+                    android:inputType="textMultiLine"
+                    android:visibility="visible"
+                    android:paddingRight="10dp"
+                    android:textColorHint="#1f90a5"
+                    android:textStyle="bold"
+                    android:text="@={ConfirmResultEX.notes}"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.992"
+                    tools:textSizeHint="30sp" />
+                <LinearLayout
+                    android:id="@+id/linearLayout15ex"
+                    android:layout_width="650dp"
+                    android:layout_height="67dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.878"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.991"
+                    tools:ignore="MissingConstraints">
+
+                    <Button
+                        android:id="@+id/Btn_checkExamination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/btnshadow"
+                        android:fontFamily="@font/droid"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="حفظ"
+                        android:onClick="@{(view)->IpresenterConfirmEx.SaveConfirm(view,ConfirmResultEX)}"
+                        android:textColor="#fff"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        tools:textSize="30sp" />
+
+                    <Button
+                        android:id="@+id/Btn_check4Examination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/btnshadow"
+                        android:fontFamily="@font/droid"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="إلغاء"
+                        android:onClick="@{(view)->IpresenterConfirmEx.OnClickcancel(view,ConfirmResultEX)}"
+                        android:textColor="#fff"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        tools:textSize="30sp" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <ScrollView
+            android:id="@+id/scrollView_Examination_part"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="60dp"
-            android:layout_weight="1"
-            android:buttonTint="#000"
-            android:fontFamily="@font/droid"
+            android:layout_height="549dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="236dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:animateLayoutChanges="true"
+            android:visibility="gone"
             android:layoutDirection="rtl"
-            android:text="لا أوافق"
-            android:textColor="#cd322e"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
+            <LinearLayout
+                android:id="@+id/linear_Layout_Examination_part"
+                android:layout_width="600dp"
+                android:layout_height="717dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.859">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/detialsconfirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:adapter="@{myAdapter}"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.547"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.419">
+                </android.support.v7.widget.RecyclerView>
 
-    </RadioGroup>
+            </LinearLayout>
+        </ScrollView>
 
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="530dp"
-        android:layout_height="88dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/rectshadow"
-        android:ems="10"
-        android:fontFamily="@font/droid"
-        android:hint="إضافة تعليق"
-        android:inputType="textMultiLine"
-        android:paddingRight="10dp"
-        android:textColorHint="#1f90a5"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.992"
-        tools:textSizeHint="30sp" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout15"
-        android:layout_width="650dp"
-        android:layout_height="67dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.991"
-        tools:ignore="MissingConstraints">
-
-        <Button
-            android:id="@+id/Btn_check5"
+        <ScrollView
+            android:id="@+id/scrollView_Sample_full"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/btnshadow"
-            android:fontFamily="@font/droid"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="حفظ"
-            android:textColor="#fff"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            tools:textSize="30sp" />
+            android:layout_height="800dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="236dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:gravity="center"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
-        <Button
-            android:id="@+id/Btn_check4"
+            <LinearLayout
+                android:id="@+id/linear_Layout_Examination_full"
+                android:layout_width="600dp"
+                android:layout_height="717dp"
+                android:layout_marginLeft="70dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.859">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/analysis_type_title"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="نوع التحليل :  "
+                        android:textColor="#1f90a5"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Spinner_analysis_type"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:paddingRight="10dp"
+                        android:spinnerMode="dropdown"
+                        android:text="@{sam.AnalysisType_Name}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/laboratory_title"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="المعمل : "
+                        android:textColor="#1f90a5"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Spinner_laboratory"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:paddingRight="10dp"
+                        android:spinnerMode="dropdown"
+                        android:text="@{sam.AnalysisLab_Name}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_place"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="مكان السحب : "
+                        android:textColor="#1f90a5"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/edit_place"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="text"
+                        android:paddingRight="10dp"
+                        android:text="@{sam.WithDrawPlace}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_SampleSize"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="حجم العينة : "
+                        android:textColor="#1f90a5"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/edit_SampleSize"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="numberSigned"
+                        android:paddingRight="10dp"
+                        android:text="@{sam.SampleSize}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_SampleUnderSize"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:textColor="#1f90a5"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:text="حجم تحت العينة "
+                        />
+
+
+                    <TextView
+                        android:id="@+id/edit_SampleUnderSize"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="numberSigned"
+                        android:paddingRight="10dp"
+                        android:text="@{sam.SampleRatio}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/editText5"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:fontFamily="@font/droid"
+                        android:textColor="#1f90a5"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:text="التعليقات المضافة" />
+
+                    <TextView
+                        android:id="@+id/addednotes"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="numberSigned"
+                        android:paddingRight="10dp"
+                        android:text="@{sam.Notes_Ar}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_Sample"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/editText4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:ignore="MissingConstraints">
+
+                    <RadioButton
+                        android:id="@+id/radio_Sample_yes1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="#000"
+                        android:fontFamily="@font/droid"
+                        android:layoutDirection="rtl"
+                        android:onClick="onRadioButtonClics"
+                        android:text="أوافق"
+                        android:textColor="#cd322e"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/radio_Sample_"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="60dp"
+                        android:layout_weight="1"
+                        android:buttonTint="#000"
+                        android:fontFamily="@font/droid"
+                        android:onClick="onRadioButtonClics"
+                        android:layoutDirection="rtl"
+                        android:text="لا أوافق"
+                        android:textColor="#cd322e"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </RadioGroup>
+                <EditText
+                    android:id="@+id/editText4note1"
+                    android:layout_width="530dp"
+                    android:layout_height="88dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rectshadow"
+                    android:ems="10"
+                    android:fontFamily="@font/droid"
+                    android:hint="إضافة تعليق"
+                    android:text="@={ConfirmResultSAm.notes}"
+                    android:inputType="textMultiLine"
+                    android:visibility="visible"
+                    android:paddingRight="10dp"
+                    android:textColorHint="#1f90a5"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.992"
+                    tools:textSizeHint="30sp" />
+                <LinearLayout
+                    android:id="@+id/linearLayout151"
+                    android:layout_width="650dp"
+                    android:layout_height="67dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.878"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.991"
+                    tools:ignore="MissingConstraints">
+
+                    <Button
+                        android:id="@+id/Btn_check1Sample"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/btnshadow"
+                        android:fontFamily="@font/droid"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="حفظ"
+                        android:onClick="@{(view)->IpresenterConfirmSam.SaveConfirm(view,ConfirmResultSAm)}"
+                        android:textColor="#fff"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        tools:textSize="30sp" />
+
+                    <Button
+                        android:id="@+id/Btn_check41Sample"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/btnshadow"
+                        android:fontFamily="@font/droid"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="إلغاء"
+                        android:onClick="@{(view)->IpresenterConfirmSam.OnClickcancel(view,ConfirmResultSAm)}"
+                        android:textColor="#fff"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        tools:textSize="30sp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+        <ScrollView
+            android:id="@+id/scrollView_Treatment_full"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/btnshadow"
-            android:fontFamily="@font/droid"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="إلغاء"
-            android:textColor="#fff"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            tools:textSize="30sp" />
+            android:layout_height="800dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="236dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:gravity="center"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:visibility="gone"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
+                android:id="@+id/linear_Layout_Treatment_full"
+                android:layout_width="wrap_content"
+                android:layout_height="730dp"
+                android:layout_marginLeft="70dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layoutDirection="rtl"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/btns_Treatment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/num_treatment"
+                tools:ignore="MissingConstraints">
 
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
 
-</android.support.constraint.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/treatment_type_title"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="نوع المعالجة: "
+                        android:textColor="#1f90a5"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/spinner_treatment_Type"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:paddingRight="10dp"
+                        android:text="@{ttreat.TreatmentType_Name}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/treatment_company_title"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="شركة المعالجة: "
+                        android:textColor="#1f90a5"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/spinner_treatment_company"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:paddingRight="10dp"
+                        android:spinnerMode="dropdown"
+                        android:text="@{ttreat.Company_Name}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="560dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/treatment_title"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="مكان المعالجة:"
+                        android:textColor="#1f90a5"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/treatment_place1"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:paddingRight="10dp"
+                        android:spinnerMode="dropdown"
+                        android:text="@{ttreat.Station_Place}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/treatment_method_title"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="طرق المعالجة: "
+                        android:textColor="#1f90a5"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/spinner_treatment_way"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:paddingRight="10dp"
+                        android:spinnerMode="dropdown"
+                        android:text="@{ttreat.TreatmentMethods_Name}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_shipment_size"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="حجم الرسالة: "
+                        android:textColor="#1f90a5"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/spinner_treatment_message"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:paddingRight="10dp"
+                        android:spinnerMode="dropdown"
+                        android:text="@{ttreat.Size}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_treatment_material"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="مادةالمعالجة: "
+                        android:textColor="#1f90a5"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/spinner_treatment"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:paddingRight="10dp"
+                        android:spinnerMode="dropdown"
+                        android:text="@{ttreat.TreatmentMaterial_Name}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/title_quantity_material"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="كميةالمادةمستخدمة: "
+                        android:textColor="#1f90a5"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/quantity_material"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="numberSigned"
+                        android:paddingRight="10dp"
+                        android:text="@{ttreat.TreatmentMat_Amount}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/Dosage_title"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="الجرعة: "
+                        android:textColor="#1f90a5"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Dosage"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="numberSigned"
+                        android:paddingRight="10dp"
+                        android:text="@{ttreat.TheDose}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/Duration_of_exposure_title"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="مدةالتعرض:"
+                        android:textColor="#1f90a5"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/Duration_of_exposure"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="numberSigned"
+                        android:paddingRight="10dp"
+                        android:text="@{ttreat.Exposure_Day}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/temperature_title"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/droid"
+                        android:text="درجة الحرارة:"
+                        android:textColor="#1f90a5"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/temperature"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="numberSigned"
+                        android:paddingRight="10dp"
+                        android:text="@{ttreat.Temperature}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/editTexttr"
+                        android:layout_width="250dp"
+                        android:layout_height="70dp"
+                        android:fontFamily="@font/droid"
+                        android:textColor="#1f90a5"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:text="التعليقات المضافة" />
+
+                    <TextView
+                        android:id="@+id/addednotestr"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/droid"
+                        android:inputType="numberSigned"
+                        android:paddingRight="10dp"
+                        android:text="@{ttreat.Note}"
+                        android:textColor="#009540"
+                        android:textSize="25sp" />
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/radioGroup_treatment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/editText4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:ignore="MissingConstraints">
+
+                    <RadioButton
+                        android:id="@+id/radio_Examination_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="#000"
+                        android:fontFamily="@font/droid"
+                        android:onClick="onRadioButtonClics"
+                        android:layoutDirection="rtl"
+                        android:text="أوافق"
+                        android:textColor="#cd322e"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/radio_Examination_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="60dp"
+                        android:layout_weight="1"
+                        android:buttonTint="#000"
+                        android:fontFamily="@font/droid"
+                        android:onClick="onRadioButtonClics"
+                        android:layoutDirection="rtl"
+                        android:text="لا أوافق"
+                        android:textColor="#cd322e"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </RadioGroup>
+                <EditText
+                    android:id="@+id/editText4notetreatment"
+                    android:layout_width="530dp"
+                    android:layout_height="88dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/rectshadow"
+                    android:ems="10"
+                    android:fontFamily="@font/droid"
+                    android:hint="إضافة تعليق"
+                    android:text="@={ConfirmResultTrea.notes}"
+                    android:inputType="textMultiLine"
+                    android:visibility="visible"
+                    android:paddingRight="10dp"
+                    android:textColorHint="#1f90a5"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.992"
+                    tools:textSizeHint="30sp" />
+                <LinearLayout
+                    android:id="@+id/linearLayout15treatment"
+                    android:layout_width="650dp"
+                    android:layout_height="67dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.878"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.991"
+                    tools:ignore="MissingConstraints">
+
+                    <Button
+                        android:id="@+id/Btn_checkTreatment1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/btnshadow"
+                        android:fontFamily="@font/droid"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="حفظ"
+                        android:onClick="@{(view)->IpresenterConfirmTreat.SaveConfirm(view,ConfirmResultTrea)}"
+                        android:textColor="#fff"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        tools:textSize="30sp" />
+
+                    <Button
+                        android:id="@+id/Btn_checkTreatment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/btnshadow"
+                        android:fontFamily="@font/droid"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="إلغاء"
+                        android:onClick="@{(view)->IpresenterConfirmTreat.OnClickcancel(view,ConfirmResultTrea)}"
+                        android:textColor="#fff"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        tools:textSize="30sp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

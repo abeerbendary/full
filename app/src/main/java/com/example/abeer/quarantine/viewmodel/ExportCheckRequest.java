@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.SimpleAdapter;
 
-import com.example.abeer.quarantine.BR;
+//import com.example.abeer.quarantine.BR;
 import com.example.abeer.quarantine.model.RequestTreatmentData;
 
 import org.json.JSONArray;
@@ -127,7 +127,7 @@ public class ExportCheckRequest extends BaseObservable {
         IsExport =exportCheckRequest.IsExport;
         Request_Treatment_Data=new RequestTreatmentData(exportCheckRequest.Request_Treatment_Data);
 //        Request_Treatment_Data=exportCheckRequest.Request_Treatment_Data;
-        notifyPropertyChanged(BR.checkRequest_Number);
+//        notifyPropertyChanged(BR.checkRequest_Number);
 
     }
     public String get$id() {
@@ -241,7 +241,7 @@ public class ExportCheckRequest extends BaseObservable {
 
     public void setCheckRequest_Number(Long CheckRequest_Number) {
         CheckRequest_Number = CheckRequest_Number;
-      notifyPropertyChanged(BR.checkRequest_Number);
+//      notifyPropertyChanged(BR.checkRequest_Number);
     }
 
     @Bindable
@@ -265,7 +265,7 @@ public class ExportCheckRequest extends BaseObservable {
 
     public void setCommitte_Type_Name(String  Committe_Type_Name) {
         Committe_Type_Name =  Committe_Type_Name;
-          notifyPropertyChanged(BR.CommitteeResultType);
+//          notifyPropertyChanged(BR.CommitteeResultType);
     }
 
     public void setRequestCommittee_Status(String RequestCommittee_Status) {

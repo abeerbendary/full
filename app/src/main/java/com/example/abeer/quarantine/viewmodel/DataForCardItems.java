@@ -19,6 +19,13 @@ public class DataForCardItems extends BaseObservable {
     public DataForCardItems() {
 
     }
+
+    public DataForCardItems(long request_Item_ID,int isplant, String item_Cat_Name) {
+        Request_Item_ID = request_Item_ID;
+        Isplant = isplant;
+        Item_Cat_Name = item_Cat_Name;
+        notifyPropertyChanged(BR.DataForCardItems);
+    }
     public DataForCardItems(long request_Item_ID, int ischeck, int isAnalysis,
                             int isTreatment, short has_Result, int isExport, String item_Name,
                             String item_Cat_Name) {

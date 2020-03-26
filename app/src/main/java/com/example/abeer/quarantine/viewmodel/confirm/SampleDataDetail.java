@@ -3,8 +3,6 @@ package com.example.abeer.quarantine.viewmodel.confirm;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.example.abeer.quarantine.viewmodel.sampleWithDraw.Sample_Result;
-
 public class SampleDataDetail  extends BaseObservable {
     public long Ex_Request_Item_Id;
     public long  Ex_Request_LotData_ID;
@@ -17,24 +15,6 @@ public class SampleDataDetail  extends BaseObservable {
     public  String AnalysisType_Name;
     public  String AnalysisLab_Name;
     public  String Lot_Number;
-
-    public SampleDataDetail(Sample_Result sample_result) {
-
-      Ex_Request_LotData_ID=sample_result.getLot_ID();
-      Notes_Ar=sample_result.getComment();
-      SampleSize= String.valueOf(sample_result.getSampleSize());
-      SampleRatio= String.valueOf(sample_result.getSampleUnderSize());
-      Sample_BarCode=sample_result.getBarCode();
-      Notes_Ar=sample_result.getComment();
-//      Ex_Request_Item_Id = ex_Request_Item_Id;
-//        SampeData_Id = sampeData_Id;
-//        WithDrawPlace = withDrawPlace;
-//        AnalysisType_Name = analysisType_Name;
-//        AnalysisLab_Name = analysisLab_Name;
-//        Lot_Number = lot_Number;
-    }
-
-
 
     @Bindable
     public long getSampeData_Id() {

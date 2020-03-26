@@ -14,7 +14,11 @@ public class TreatmenttDataa  extends BaseObservable {
     public  TreatmenttDataa(){
 
     }
-
+    @Bindable
+    public TreatmentDataDetail get_obj() {
+        TreatmentDataDetail treatmentDataDetail=new TreatmentDataDetail();
+        return treatmentDataDetail;
+    }
     public void set_ListDetail(TreatmenttDataa listDetail) {
 
         this.TreatmentData=listDetail.TreatmentData;

@@ -4,6 +4,9 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import com.example.abeer.quarantine.BR;
+import com.example.abeer.quarantine.viewmodel.confirm.CommitteData;
+import com.example.abeer.quarantine.viewmodel.confirm.SampleeDataa;
+import com.example.abeer.quarantine.viewmodel.confirm.TreatmenttDataa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +44,71 @@ public class ListItemLotat extends BaseObservable {
 
         return ArrayDisplayText;
     }
+
+    public ListItemLotat GetSampleData2(SampleeDataa sampleeDataa) {
+        List<ItemLotatData> sampledata = new ArrayList<>();
+        ListItemLotat listItemLotat=new ListItemLotat();
+        try {
+            //first item is empty
+            int size = sampleeDataa.SampleData.size();
+            for (int i = 0; i < size; i++) {
+                if((sampleeDataa.SampleData.get(i).Ex_Request_LotData_ID) !=-1)
+                {
+                    sampledata.add(new ItemLotatData(sampleeDataa.SampleData.get(i)));
+                    listItemLotat._x0040_temp_table_Lot.add(sampledata.get(i));
+                }
+
+            }
+        } catch (Exception ex) {
+
+        }
+
+        return listItemLotat;
+    }
+
+    public ListItemLotat GettreatmentData3(TreatmenttDataa treatmenttDataa) {
+        List<ItemLotatData> treatment = new ArrayList<>();
+        ListItemLotat listItemLotat=new ListItemLotat();
+        try {
+            //first item is empty
+            int size = treatmenttDataa.TreatmentData.size();
+            for (int i = 0; i < size; i++) {
+                if((treatmenttDataa.TreatmentData.get(i).Ex_Request_LotData_ID) !=-1)
+                {
+                    treatment.add(new ItemLotatData(treatmenttDataa.TreatmentData.get(i)));
+                    listItemLotat._x0040_temp_table_Lot.add(treatment.get(i));
+                }
+
+            }
+        } catch (Exception ex) {
+
+        }
+
+        return listItemLotat;
+    }
+
+    public ListItemLotat GetCommitteData2(CommitteData committeData) {
+        List<ItemLotatData> CommitteData = new ArrayList<>();
+        ListItemLotat listItemLotat=new ListItemLotat();
+        try {
+            //first item is empty
+            int size = committeData.CommitteeData.size();
+            for (int i = 0; i < size; i++) {
+                if((committeData.CommitteeData.get(i).Ex_RequestLotData_ID) !=-1){
+                    CommitteData.add(new ItemLotatData(committeData.CommitteeData.get(i)));
+                    listItemLotat._x0040_temp_table_Lot.add(CommitteData.get(i));
+                }
+
+            }
+        }
+        catch (Exception ex) {
+
+        }
+
+        return listItemLotat;
+    }
+
+
     @Bindable
     public ArrayList<String> get_ListDetail() {
         ArrayList<String> ArrayDisplayText=new ArrayList<>();

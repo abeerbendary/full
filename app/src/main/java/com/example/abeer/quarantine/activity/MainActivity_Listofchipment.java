@@ -124,7 +124,8 @@ public class MainActivity_Listofchipment extends AppCompatActivity
         checkdate = String.valueOf(formatter.format(date));
         ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (mWifi.isConnected()) {
+        NetworkInfo mobileData = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (mWifi.isConnected()||mobileData.isConnected()) {
             String url = ipadrass + ApiCall.UrlListOfChipment + "User_Id=" + EmpId + "&Check_Date=" + checkdate;
             dataManger.SendVollyRequestJsonArrayGet(this, Request.Method.GET, url, new IDataValue() {
                 @Override
